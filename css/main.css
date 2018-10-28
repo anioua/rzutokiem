@@ -1,0 +1,75 @@
+body {
+    box-sizing: border-box;
+}
+
+#pogoda {
+    height: 300px;
+    width: 100%;
+    background-color: cyan;
+}
+
+#waluty {
+    height: 500px;
+    width: 100%;
+    background-color: darkslategray;
+}
+
+#waluty ul li {
+    list-style-type: none; 
+}
+
+li:nth-child(2n+1) {
+    background: #356443;
+}
+li:nth-child(1) {
+    background: #9fe8b5;
+}
+
+#lotto {
+    height: 200px;
+    width: 100%;
+    background-color: darkorange;
+}
+
+
+
+@media (min-width:768px) and (max-width:920px) {
+    
+    #pogoda {
+    height: 600px;
+    width: 600px;
+    background-color: cyan;
+    }
+    
+    #waluty { 
+    height: 1000px;
+    width: 600px; 
+    } 
+        
+    #lotto {
+    height: 400px;
+    width: 600px;
+    background-color: darkorange;
+}
+}
+
+@media (min-width:921px)  {
+    
+        
+    #pogoda {
+    height: 1200px;
+    width: 1200px;
+    background-color: cyan;
+    }
+    
+    #waluty { 
+    height: 100%;
+    width: 200px; 
+    } 
+    
+    #lotto {
+    height: 800px;
+    width: 1200px;
+    background-color: darkorange;
+}
+}
