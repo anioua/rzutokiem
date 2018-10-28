@@ -12,7 +12,23 @@
 
     <header>Rzut Okiem</header>
 
-    <div id="pogoda"><span id="temperatura"></span></div>
+    <div id="pogoda">
+    
+    <form method=get>
+<input type="text" id="szukajmiasto" placeholder="Wpisz miasto">
+<input type="button" value="Sprawdź pogodę" onclick="showValue('szukajmiasto');">
+</form>
+
+    
+    
+    Lokacja: <span id="miasto"></span><br>
+    
+    Temperatura: <span id="temperatura"></span><sup>o</sup>C<br>
+    Ciśnienie:   <span id="cisnienie"></span><br>
+    Wilgotność: <span id="wilgotnosc"></span>%<br>
+    Opis: <span id="opis"></span><br>
+                <span id="cloudIcon"> <img src="#"></span><br>
+    </div>
     <div id="waluty">
        
        
