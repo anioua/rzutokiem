@@ -1,34 +1,76 @@
 body {
     box-sizing: border-box;
+    background-color: #fff;
+}
+
+
+
+#mainArea {
+    background-color: #efefef;
+    box-shadow: 0px 1px 3px 1px;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 #pogoda {
     height: 200px;
     width: 100%;
-    background-color: cyan;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
 }
 
 #waluty {
-    height: 200px;
+    height: 300px;
     width: 100%;
     background-color: darkslategray;
+    box-shadow: 0px 1px 3px 1px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    
+}
+#waluty #walutyKrajow ul {
+    width: 30px;
+/*    float: left;*/
 }
 
-#waluty ul li {
+#walutyKrajow{
+    display: flex;
+    flex-direction: row;  
+}
+
+#waluty #walutyKrajow ul li {
     list-style-type: none; 
+    width: 60px;
+    border: 1px solid #fff;
 }
 
-li:nth-child(2n+1) {
+#waluty #walutyKrajow ul li:nth-child(2n+1) {
     background: #356443;
 }
-li:nth-child(1) {
+#waluty #walutyKrajow ul li:nth-child(1) {
     background: #9fe8b5;
+    
 }
+
+
+
+
+
 
 #lotto {
     height: 200px;
     width: 100%;
     background-color: darkorange;
+    border: 1px solid #000;
+    border-radius: 2px;
+    order: 2;
 }
 
 
@@ -36,40 +78,47 @@ li:nth-child(1) {
 @media (min-width:768px) and (max-width:920px) {
     
     #pogoda {
-    height: 600px;
-    width: 600px;
-    background-color: cyan;
-    }
-    
-    #waluty { 
-    height: 1000px;
-    width: 600px; 
-    } 
-        
-    #lotto {
-    height: 400px;
-    width: 600px;
-    background-color: darkorange;
-}
-}
-
-@media (min-width:921px)  {
-    
-        
-    #pogoda {
     height: 200px;
     width: 300px;
-    background-color: cyan;
+    }
+    
+    #lotto {
+    height: 100px;
+    width: 200px;
     }
     
     #waluty { 
     height: 400px;
     width: 200px; 
     } 
+        
+}
+
+@media (min-width:921px)  {
+    #mainArea {
+    height: 800px;
+    width: 1200px;
+    flex-direction: row;
+    justify-content: space-around;
+    }
+        
+    #pogoda {
+    height: 200px;
+    width: 300px;
+    }
     
     #lotto {
     height: 100px;
     width: 200px;
-    background-color: darkorange;
-}
+    
+    
+    }
+    
+    #waluty { 
+    height: 400px;
+    width: 300px; 
+        order: 2;
+    } 
+    
+    
 }

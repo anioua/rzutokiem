@@ -12,48 +12,88 @@
 
     <header>Rzut Okiem</header>
 
-    <div id="pogoda">
-    
-    <form method=get>
-<input type="text" id="szukajmiasto" placeholder="Wpisz miasto">
-<input type="button" value="Sprawdź pogodę" onclick="showValue('szukajmiasto');">
-</form>
+    <div id="mainArea">
 
-    
-    
-    Lokacja: <span id="miasto"></span><br>
-    
-    Temperatura: <span id="temperatura"></span><sup>o</sup>C<br>
-    Ciśnienie:   <span id="cisnienie"></span><br>
-    Wilgotność: <span id="wilgotnosc"></span>%<br>
-    Opis: <span id="opis"></span><br>
-                <span id="cloudIcon"> <img src="#"></span><br>
-    </div>
-    <div id="waluty">
-       
-       
-        <ul>
+
+        <div id="pogoda">
+
+            <form method=get>
+                <input type="text" id="szukajmiasto" placeholder="Wpisz miasto">
+                <input type="button" value="Sprawdź pogodę" onclick="showValue('szukajmiasto');">
+            </form>
+
+
+
+            Lokacja: <span id="miasto"></span><br> Temperatura: <span id="temperatura"></span><sup>o</sup>C<br> Ciśnienie: <span id="cisnienie"></span><br> Wilgotność: <span id="wilgotnosc"></span>%<br> Opis: <span id="opis"></span><br>
+            <span id="cloudIcon"> <img src="#"></span><br>
+        </div>
+
+        <div id="lotto"></div>
+
+        <div id="waluty">
+
+
+            <!--<ul>
             <li>Sprzedaż: Kupno:</li>
-            <li><span id="USDcode"></span><span id="USDpriceAsk"></span><span id="USDpriceBid"></span></li>
-            <li><span id="EURcode"></span><span id="EURpriceAsk"></span><span id="EURpriceBid"></span></li>
-            <li><span id="GBPcode"></span><span id="GBPpriceAsk"></span><span id="GBPpriceBid"></span></li>
-            <li><span id="CHFcode"></span><span id="CHFpriceAsk"></span><span id="CHFpriceBid"></span></li>
-            <li><span id="JPYcode"></span><span id="JPYpriceAsk"></span><span id="JPYpriceBid"></span></li>
-            <li><span id="HUFcode"></span><span id="HUFpriceAsk"></span><span id="HUFpriceBid"></span></li>
-            <li><span id="CZKcode"></span><span id="CZKpriceAsk"></span><span id="CZKpriceBid"></span></li>
-            <li><span id="NOKcode"></span><span id="NOKpriceAsk"></span><span id="NOKpriceBid"></span></li>
-            <li><span id="HRKcode"></span><span id="HRKpriceAsk"></span><span id="HRKpriceBid"></span></li>
+            <li><span id="USDcode" class="currencyCode"></span><span id="USDpriceAsk"></span> <span id="USDpriceBid"></span></li>
+            <li><span id="EURcode"  class="currencyCode"></span><span id="EURpriceAsk"></span> <span id="EURpriceBid"></span></li>
+            <li><span id="GBPcode"  class="currencyCode"></span><span id="GBPpriceAsk"></span> <span id="GBPpriceBid"></span></li>
+            <li><span id="CHFcode"  class="currencyCode"></span><span id="CHFpriceAsk"></span> <span id="CHFpriceBid"></span></li>
+            <li><span id="JPYcode"  class="currencyCode"></span><span id="JPYpriceAsk"></span> <span id="JPYpriceBid"></span></li>
+            <li><span id="HUFcode"  class="currencyCode"></span><span id="HUFpriceAsk"></span> <span id="HUFpriceBid"></span></li>
+            <li><span id="CZKcode"  class="currencyCode"></span><span id="CZKpriceAsk"></span> <span id="CZKpriceBid"></span></li>
+            <li><span id="NOKcode"  class="currencyCode"></span><span id="NOKpriceAsk"></span> <span id="NOKpriceBid"></span></li>
             
-        </ul>
+        </ul>-->
+            <div id="walutyKrajow">
+                <ul>
+                    <li>Waluta</li>
+                    <li><span id="USDcode" class="currencyCode"></span></li>
+                    <li><span id="EURcode" class="currencyCode"></span></li>
+                    <li><span id="GBPcode" class="currencyCode"></span></li>
+                    <li><span id="CHFcode" class="currencyCode"></span></li>
+                    <li><span id="JPYcode" class="currencyCode"></span></li>
+                    <li><span id="HUFcode" class="currencyCode"></span></li>
+                    <li><span id="CZKcode" class="currencyCode"></span></li>
+                    <li><span id="NOKcode" class="currencyCode"></span></li>
+
+                </ul>
+                <ul>
+                    <li>Sprzedaż</li>
+                    <li><span id="USDpriceAsk"></span> </li>
+                    <li><span id="EURpriceAsk"></span> </li>
+                    <li><span id="GBPpriceAsk"></span> </li>
+                    <li><span id="CHFpriceAsk"></span> </li>
+                    <li><span id="JPYpriceAsk"></span> </li>
+                    <li><span id="HUFpriceAsk"></span> </li>
+                    <li><span id="CZKpriceAsk"></span> </li>
+                    <li><span id="NOKpriceAsk"></span> </li>
+
+                </ul>
+                <ul>
+                    <li>Kupno</li>
+                    <li> <span id="USDpriceBid"></span></li>
+                    <li> <span id="EURpriceBid"></span></li>
+                    <li> <span id="GBPpriceBid"></span></li>
+                    <li> <span id="CHFpriceBid"></span></li>
+                    <li> <span id="JPYpriceBid"></span></li>
+                    <li> <span id="HUFpriceBid"></span></li>
+                    <li> <span id="CZKpriceBid"></span></li>
+                    <li> <span id="NOKpriceBid"></span></li>
+
+                </ul>
+            </div>
+            <div id="zloto">Cena złota: <span id="AUprice"></span><br>(1 gram, próba 1000)</div>
+
+
+        </div>
+
+
 
 
     </div>
-    <div id="lotto"></div>
 
 
-    <h3>Cena złota:</h3>
-    <p></p>
-    <span id="AUprice"></span>
 
 
 
