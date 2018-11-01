@@ -1,48 +1,42 @@
-
 function ajaxActualLocation() {
-$.getJSON('http://ip-api.com/json', function (data) {
-    
-       var town = data.city;
-    console.log(town);
-    
-ajaxWeather(town);
-})
+    $.getJSON('http://ip-api.com/json', function (data) {
+
+        var town = data.city;
+
+        ajaxWeather(town);
+    })
 }
 
 
 function showValue(id) {
-        town = document.getElementById(id).value; 
-        ajaxWeather(town);
-    
+    town = document.getElementById(id).value;
+    ajaxWeather(town);
+
 }
 
-
-
-
-
 function ajaxWeather(town) {
-    
-    
-        $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + town + '&APPID=3c8664b6dcbd1f5c9db7d62c98ea4508&units=metric&lang=pl ', function (data) {
+    town = town;
+
+    $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + town + '&APPID=3c8664b6dcbd1f5c9db7d62c98ea4508&units=metric&lang=pl ', function (data) {
 
 
-            $('#miasto').html(data.name);
+        $('#miasto').html(data.name);
 
-            var temperature = data.main.temp;
-            temperature = temperature.toFixed(0);
-            $('#temperatura').html(temperature);
+        var temperature = data.main.temp;
+        temperature = temperature.toFixed(0);
+        $('#temperatura').html(temperature);
 
-            $('#cisnienie').html(data.main.pressure);
-            $('#wilgotnosc').html(data.main.humidity);
-            $('#wiatr').html(data.wind.speed);
-            $('#opis').html(data.weather[0].description);
+        $('#cisnienie').html(data.main.pressure);
+        $('#wilgotnosc').html(data.main.humidity);
+        $('#wiatr').html(data.wind.speed);
+        $('#opis').html(data.weather[0].description);
 
-            var cloudIcon = data.weather[0].icon;
-            $('#cloudIcon img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
+        var cloudIcon = data.weather[0].icon;
+        $('#cloudIcon img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
 
-        })
+    })
 
-   
+
 }
 
 $(document).ready(function () {
@@ -54,8 +48,6 @@ $(document).ready(function () {
         $.getJSON('http://api.nbp.pl/api/cenyzlota', function (data) {
 
             $('#AUprice').html(data[0].cena);
-            //Wyliczona w NBP cena 1 g złota (w próbie 1000)
-
 
         })
 
@@ -157,7 +149,132 @@ $(document).ready(function () {
 
     }
 
+    function ajaxPollution() {
 
+        var airQuality = "";
+
+
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/station/findAll', function (data) {
+
+            console.log(data);
+            $('#miastoJakosc0').html(data[103].city.name);
+            $('#miastoJakosc1').html(data[82].city.name);
+            $('#miastoJakosc2').html(data[112].city.name);
+            $('#miastoJakosc3').html(data[117].city.name);
+            $('#miastoJakosc4').html(data[54].city.name);
+            $('#miastoJakosc5').html(data[2].city.name);
+            $('#miastoJakosc6').html(data[30].city.name);
+            $('#miastoJakosc7').html(data[47].city.name);
+            $('#miastoJakosc8').html(data[38].city.name);
+            $('#miastoJakosc9').html(data[77].city.name);
+            $('#miastoJakosc10').html(data[142].city.name);
+            $('#miastoJakosc11').html(data[91].city.name);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/739', function (data) {
+
+            airQuality = $('#daneJakosci0').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,0);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/10121', function (data) {
+
+            airQuality = $('#daneJakosci1').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,1);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/459', function (data) {
+
+            airQuality = $('#daneJakosci2').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,2);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/530', function (data) {
+
+            airQuality = $('#daneJakosci3').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,3);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/813', function (data) {
+
+            airQuality = $('#daneJakosci4').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,4);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/129', function (data) {
+
+            airQuality = $('#daneJakosci5').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,5);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/671', function (data) {
+
+            airQuality = $('#daneJakosci6').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,6);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/987', function (data) {
+
+            airQuality = $('#daneJakosci7').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,7);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/944', function (data) {
+
+            airQuality = $('#daneJakosci8').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,8);
+
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/877', function (data) {
+
+            airQuality = $('#daneJakosci9').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,9);
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/145', function (data) {
+
+            airQuality = $('#daneJakosci10').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,10);
+        })
+        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/609', function (data) {
+
+            airQuality = $('#daneJakosci11').html(data.stIndexLevel.indexLevelName);
+            airQualityColor(airQuality[0].innerHTML,11);
+        })
+
+function airQualityColor(color,rowNo) {
+
+                if (color == "Dobry") {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#13b739");
+
+                }
+                if (color == "Umiarkowany") {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ffca18");
+
+                }
+                if (color == "Zły") {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ff0b0b");
+
+                }
+                if (color == "Brak indeksu") {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#808080");
+
+                }
+            }
+
+    }
+
+
+    //    function ajaxHolidays() {
+    //
+    //        $.getJSON('https://www.calendarindex.com/api/v1/holidays?country=PL&year=2018&api_key=fe7e61b366fc7b5ef6d65d01171aa3fc83945bf6', function (data) {
+    //
+    //            console.log(data);
+    //            $('#dataSwieta').html(data.response.holidays[0].date);
+    //            $('#nazwaSwieta').html(data.response.holidays[0].name);
+    //
+    //
+    //        })
+    //    }
 
 
 
@@ -167,6 +284,9 @@ $(document).ready(function () {
 
     ajaxActualLocation();
     setInterval(ajaxWeather, 2700000);
+    ajaxPollution();
+    setInterval(ajaxPollution, 2700000);
+    //    ajaxHolidays();
     ajaxCurrency();
     setInterval(ajaxCurrency, 2700000);
 
