@@ -315,6 +315,15 @@ function airQualityColor(color,rowNo) {
 
                 }
             }
+        
+        $.getJSON('https://www.calendarindex.com/api/v1/holidays?country=PL&year=2018&api_key=fe7e61b366fc7b5ef6d65d01171aa3fc83945bf6', function (data) {
+    
+                console.log(data);
+               
+    
+    
+            })
+        
     }
         
 //        vTKdCSxNj6DLzhJRD airvisual

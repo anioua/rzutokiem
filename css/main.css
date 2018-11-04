@@ -28,8 +28,20 @@ header {
     text-align: center;
 }
 
+#imieniny {
+    position: absolute;
+    background-color: #c95050;
+    color: #f5c88e;
+    height: 35px;
+    width: 90%;
+    margin-top: 40px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    text-align: center;
+}
+
 #pogoda {
-    margin-top: 65px;
+    margin-top: 90px;
     height: 200px;
     width: 100%;
     background-color: #aededd;
@@ -176,6 +188,12 @@ header {
     width: 300px;
     }
     
+    #imieniny {
+    height: 35px;
+    width: 30%;
+    margin-top: 50px;
+    }
+    
     #jakoscPowietrza {
     height: 100px;
     width: 200px;
@@ -195,6 +213,12 @@ header {
     width: 1200px;
     flex-direction: row;
     justify-content: space-around;
+    }
+    
+    #imieniny {
+    height: 25px;
+    width: 30%;
+    margin-top: 50px;
     }
         
     #pogoda {
