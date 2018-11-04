@@ -2,6 +2,10 @@ function ajaxActualLocation() {
     $.getJSON('http://ip-api.com/json', function (data) {
 
         var town = data.city;
+        if (town == null) {
+            town = "Poland";
+        }
+        
 
         ajaxWeather(town);
     })
