@@ -152,116 +152,172 @@ $(document).ready(function () {
     function ajaxPollution() {
 
         var airQuality = "";
+        
+        
+        $.getJSON('http://api.waqi.info/feed/Gdynia/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName= data.data.city.name;
+            $('#miastoJakosc0').html(locationName.substring(0,6));
 
-
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/station/findAll', function (data) {
-
-            console.log(data);
-            $('#miastoJakosc0').html(data[103].city.name);
-            $('#miastoJakosc1').html(data[82].city.name);
-            $('#miastoJakosc2').html(data[112].city.name);
-            $('#miastoJakosc3').html(data[117].city.name);
-            $('#miastoJakosc4').html(data[54].city.name);
-            $('#miastoJakosc5').html(data[2].city.name);
-            $('#miastoJakosc6').html(data[30].city.name);
-            $('#miastoJakosc7').html(data[47].city.name);
-            $('#miastoJakosc8').html(data[38].city.name);
-            $('#miastoJakosc9').html(data[77].city.name);
-            $('#miastoJakosc10').html(data[142].city.name);
-            $('#miastoJakosc11').html(data[91].city.name);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,0);
 
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/739', function (data) {
+        
+        $.getJSON('http://api.waqi.info/feed/Kraków/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc1').html(locationName.substring(0,6));
 
-            airQuality = $('#daneJakosci0').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,0);
-
-        })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/10121', function (data) {
-
-            airQuality = $('#daneJakosci1').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,1);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,1);
 
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/459', function (data) {
+        
+        $.getJSON('http://api.waqi.info/feed/Warsaw/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc2').html(locationName.substring(14,23));
 
-            airQuality = $('#daneJakosci2').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,2);
-
-        })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/530', function (data) {
-
-            airQuality = $('#daneJakosci3').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,3);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,2);
 
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/813', function (data) {
+        $.getJSON('http://api.waqi.info/feed/Wrocław/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc3').html(locationName.substring(0,7));
 
-            airQuality = $('#daneJakosci4').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,4);
-
-        })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/129', function (data) {
-
-            airQuality = $('#daneJakosci5').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,5);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,3);
 
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/671', function (data) {
+        $.getJSON('http://api.waqi.info/feed/Poznań/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc4').html(locationName.substring(0,6));
 
-            airQuality = $('#daneJakosci6').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,6);
-
-        })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/987', function (data) {
-
-            airQuality = $('#daneJakosci7').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,7);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,4);
 
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/944', function (data) {
+        $.getJSON('http://api.waqi.info/feed/Szczecin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc5').html(locationName.substring(0,8));
 
-            airQuality = $('#daneJakosci8').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,8);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,5);
 
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/877', function (data) {
+        $.getJSON('http://api.waqi.info/feed/białystok/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc6').html(locationName.substring(0,9));
 
-            airQuality = $('#daneJakosci9').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,9);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,6);
+
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/145', function (data) {
+        $.getJSON('http://api.waqi.info/feed/Lublin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc7').html(locationName.substring(0,6));
 
-            airQuality = $('#daneJakosci10').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,10);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,7);
+
         })
-        $.getJSON('http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/609', function (data) {
+        $.getJSON('http://api.waqi.info/feed/Rzeszów/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc8').html(locationName.substring(0,7));
 
-            airQuality = $('#daneJakosci11').html(data.stIndexLevel.indexLevelName);
-            airQualityColor(airQuality[0].innerHTML,11);
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,8);
+
+        })
+        $.getJSON('http://api.waqi.info/feed/Zakopane/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc9').html(locationName.substring(0,8));
+
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,9);
+
+        })
+        $.getJSON('http://api.waqi.info/feed/Katowice/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc10').html(locationName.substring(0,8));
+
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,10);
+
+        })
+        $.getJSON('http://api.waqi.info/feed/Łódź/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+            
+            var locationName = data.data.city.name;
+            $('#miastoJakosc11').html(locationName.substring(0,4));
+
+            airQuality = data.data.aqi;
+            airQualityColor(airQuality,11);
+
         })
 
 function airQualityColor(color,rowNo) {
+    
+                if (color <= 15) {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#116a25");
+                    $('#daneJakosci'+rowNo).html("Doskonała");
 
-                if (color == "Dobry") {
+                }
+    
+                if ((color > 15) & ( color <= 50)) {
                     $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#13b739");
+                    $('#daneJakosci'+rowNo).html("Bardzo dobra");
 
                 }
-                if (color == "Umiarkowany") {
+
+                if ((color > 50) && ( color <= 100)) {
                     $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ffca18");
+                    $('#daneJakosci'+rowNo).html("Umiarkowana");
 
                 }
-                if (color == "Zły") {
+                if ((color > 100) && ( color <= 150)) {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ff5618");
+                    $('#daneJakosci'+rowNo).html("Niezdrowa");
+
+                }
+                if ((color > 150) && ( color <= 200)) {
                     $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ff0b0b");
+                    $('#daneJakosci'+rowNo).html("Zła");
 
                 }
-                if (color == "Brak indeksu") {
+                if ((color > 200) && ( color <= 299)) {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#6a4ad4");
+                    $('#daneJakosci'+rowNo).html("Bardzo niezdrowa");
+
+                }
+                if ( color >= 300 ) {
+                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#690000");
+                    $('#daneJakosci'+rowNo).html("Niebezpieczna");
+
+                }
+                
+                if (color == null) {
                     $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#808080");
+                    $('#daneJakosci'+rowNo).html("Brak danych");
 
                 }
             }
-
     }
+        
+//        vTKdCSxNj6DLzhJRD airvisual
+//        05af933043bbb0a65856da8ed3808470c0e6bc59 aqicn
+        
+
+        
 
 
     //    function ajaxHolidays() {

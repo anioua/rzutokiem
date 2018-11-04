@@ -105,9 +105,40 @@ header {
     bottom: 0;
 }
 
-#jakoscPowietrza footer{
-    background-color: #e5aa26;
+#jakoscPowietrza footer {
+    background-color: #e5aa26;   
 }
+
+.pollutionColor {
+    display: inline-block;
+    margin-top: 5px;
+    width: 15px;
+    height: 15px;   
+}
+
+#jakoscPowietrza footer .pol0 {
+    background-color: #690000;
+}
+#jakoscPowietrza footer .pol1 {
+    background-color: #6a4ad4;
+}
+#jakoscPowietrza footer .pol2 {
+    background-color: #ff0b0b;
+}
+#jakoscPowietrza footer .pol3 {
+    background-color: #ff5618;
+}
+#jakoscPowietrza footer .pol4 {
+    background-color: #ffca18;
+}
+#jakoscPowietrza footer .pol5 {
+    background-color: #13b739;
+}
+#jakoscPowietrza footer .pol6 {
+    background-color: #116a25;
+}
+
+
 
 #jakoscPowietrza {
     margin-top: 20px;
@@ -135,10 +166,10 @@ header {
     display: inline-block;
     margin-top: 5px;
     border: 1px solid #000;
-    border-radius: 2px;
-    
-    
+    border-radius: 2px;  
+    line-height: 25px;
 }
+
 
 
 
