@@ -2,10 +2,10 @@ function ajaxActualLocation() {
     $.getJSON('http://ip-api.com/json', function (data) {
 
         var town = data.city;
-        if (town == null) {
+        if (town == "unidentified") {
             town = "Poland";
         }
-        
+
 
         ajaxWeather(town);
     })
@@ -156,181 +156,214 @@ $(document).ready(function () {
     function ajaxPollution() {
 
         var airQuality = "";
-        
-        
+
+
         $.getJSON('http://api.waqi.info/feed/Gdynia/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
-            var locationName= data.data.city.name;
-            $('#miastoJakosc0').html(locationName.substring(0,6));
+
+            var locationName = data.data.city.name;
+            $('#miastoJakosc0').html(locationName.substring(0, 6));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,0);
+            airQualityColor(airQuality, 0);
 
         })
-        
+
         $.getJSON('http://api.waqi.info/feed/Kraków/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc1').html(locationName.substring(0,6));
+            $('#miastoJakosc1').html(locationName.substring(0, 6));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,1);
+            airQualityColor(airQuality, 1);
 
         })
-        
+
         $.getJSON('http://api.waqi.info/feed/Warsaw/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc2').html(locationName.substring(14,23));
+            $('#miastoJakosc2').html(locationName.substring(14, 23));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,2);
+            airQualityColor(airQuality, 2);
 
         })
         $.getJSON('http://api.waqi.info/feed/Wrocław/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc3').html(locationName.substring(0,7));
+            $('#miastoJakosc3').html(locationName.substring(0, 7));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,3);
+            airQualityColor(airQuality, 3);
 
         })
         $.getJSON('http://api.waqi.info/feed/Poznań/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc4').html(locationName.substring(0,6));
+            $('#miastoJakosc4').html(locationName.substring(0, 6));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,4);
+            airQualityColor(airQuality, 4);
 
         })
         $.getJSON('http://api.waqi.info/feed/Szczecin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc5').html(locationName.substring(0,8));
+            $('#miastoJakosc5').html(locationName.substring(0, 8));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,5);
+            airQualityColor(airQuality, 5);
 
         })
         $.getJSON('http://api.waqi.info/feed/białystok/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc6').html(locationName.substring(0,9));
+            $('#miastoJakosc6').html(locationName.substring(0, 9));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,6);
+            airQualityColor(airQuality, 6);
 
         })
         $.getJSON('http://api.waqi.info/feed/Lublin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc7').html(locationName.substring(0,6));
+            $('#miastoJakosc7').html(locationName.substring(0, 6));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,7);
+            airQualityColor(airQuality, 7);
 
         })
         $.getJSON('http://api.waqi.info/feed/Rzeszów/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc8').html(locationName.substring(0,7));
+            $('#miastoJakosc8').html(locationName.substring(0, 7));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,8);
+            airQualityColor(airQuality, 8);
 
         })
         $.getJSON('http://api.waqi.info/feed/Zakopane/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc9').html(locationName.substring(0,8));
+            $('#miastoJakosc9').html(locationName.substring(0, 8));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,9);
+            airQualityColor(airQuality, 9);
 
         })
         $.getJSON('http://api.waqi.info/feed/Katowice/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc10').html(locationName.substring(0,8));
+            $('#miastoJakosc10').html(locationName.substring(0, 8));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,10);
+            airQualityColor(airQuality, 10);
 
         })
         $.getJSON('http://api.waqi.info/feed/Łódź/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
+
             var locationName = data.data.city.name;
-            $('#miastoJakosc11').html(locationName.substring(0,4));
+            $('#miastoJakosc11').html(locationName.substring(0, 4));
 
             airQuality = data.data.aqi;
-            airQualityColor(airQuality,11);
+            airQualityColor(airQuality, 11);
 
         })
 
-function airQualityColor(color,rowNo) {
-    
-                if (color <= 15) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#116a25");
-                    $('#daneJakosci'+rowNo).html("Doskonała");
+        function airQualityColor(color, rowNo) {
 
-                }
-    
-                if ((color > 15) & ( color <= 50)) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#13b739");
-                    $('#daneJakosci'+rowNo).html("Bardzo dobra");
+            if (color <= 15) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#116a25");
+                $('#daneJakosci' + rowNo).html("Doskonała");
 
-                }
-
-                if ((color > 50) && ( color <= 100)) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ffca18");
-                    $('#daneJakosci'+rowNo).html("Umiarkowana");
-
-                }
-                if ((color > 100) && ( color <= 150)) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ff5618");
-                    $('#daneJakosci'+rowNo).html("Niezdrowa");
-
-                }
-                if ((color > 150) && ( color <= 200)) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#ff0b0b");
-                    $('#daneJakosci'+rowNo).html("Zła");
-
-                }
-                if ((color > 200) && ( color <= 299)) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#6a4ad4");
-                    $('#daneJakosci'+rowNo).html("Bardzo niezdrowa");
-
-                }
-                if ( color >= 300 ) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#690000");
-                    $('#daneJakosci'+rowNo).html("Niebezpieczna");
-
-                }
-                
-                if (color == null) {
-                    $('#jakosPowietrzaKolor'+rowNo+'').css("backgroundColor", "#808080");
-                    $('#daneJakosci'+rowNo).html("Brak danych");
-
-                }
             }
-        
-        $.getJSON('https://www.calendarindex.com/api/v1/holidays?country=PL&year=2018&api_key=fe7e61b366fc7b5ef6d65d01171aa3fc83945bf6', function (data) {
-    
-                console.log(data);
-               
-    
-    
-            })
-        
-    }
-        
-//        vTKdCSxNj6DLzhJRD airvisual
-//        05af933043bbb0a65856da8ed3808470c0e6bc59 aqicn
-        
 
-        
+            if ((color > 15) & (color <= 50)) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#13b739");
+                $('#daneJakosci' + rowNo).html("Bardzo dobra");
+
+            }
+
+            if ((color > 50) && (color <= 100)) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#ffca18");
+                $('#daneJakosci' + rowNo).html("Umiarkowana");
+
+            }
+            if ((color > 100) && (color <= 150)) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#ff5618");
+                $('#daneJakosci' + rowNo).html("Niezdrowa");
+
+            }
+            if ((color > 150) && (color <= 200)) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#ff0b0b");
+                $('#daneJakosci' + rowNo).html("Zła");
+
+            }
+            if ((color > 200) && (color <= 299)) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#6a4ad4");
+                $('#daneJakosci' + rowNo).html("Bardzo niezdrowa");
+
+            }
+            if (color >= 300) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#690000");
+                $('#daneJakosci' + rowNo).html("Niebezpieczna");
+
+            }
+
+            if (color == null) {
+                $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#808080");
+                $('#daneJakosci' + rowNo).html("Brak danych");
+
+            }
+        }
+
+
+    }
+
+    function news() {
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            console.log(data);
+            $('.newsImg0').attr('src',data.articles[0].urlToImage);
+            $('.newsText0').html(data.articles[0].title);
+
+        })
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+            
+            $('.newsImg1').attr('src',data.articles[1].urlToImage);
+            $('.newsText1').html(data.articles[1].title);
+            
+        })
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            $('.newsImg2').attr('src',data.articles[2].urlToImage);
+            $('.newsText2').html(data.articles[2].title);
+
+        })
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+            
+            $('.newsImg3').attr('src',data.articles[3].urlToImage);
+            $('.newsText3').html(data.articles[3].title);
+
+        })
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            $('.newsImg4').attr('src',data.articles[4].urlToImage);
+            $('.newsText4').html(data.articles[4].title);
+
+        })
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            $('.newsImg5').attr('src',data.articles[5].urlToImage);
+            $('.newsText5').html(data.articles[5].title);
+
+        })
+
+    }
+
+
+    //        8762cdced47449a9b03528bdbb6d371c newsapi
+
+
 
 
     //    function ajaxHolidays() {
@@ -358,6 +391,8 @@ function airQualityColor(color,rowNo) {
     //    ajaxHolidays();
     ajaxCurrency();
     setInterval(ajaxCurrency, 2700000);
+    news();
+    setInterval(news, 2700000);
 
 
 })
