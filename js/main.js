@@ -320,43 +320,111 @@ $(document).ready(function () {
     }
 
     function news() {
+        
+        
+        function checkImg(imgToCheck) {
+
+            if (imgToCheck == null) {
+                imgToCheck = "../rzutokiem/img/noimg.jpg"
+                return imgToCheck;
+            }else{
+                return imgToCheck;
+            }
+
+        }
+        
+        
         $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
 
             console.log(data);
-            $('.newsImg0').attr('src',data.articles[0].urlToImage);
+            var urlToImg = data.articles[0].urlToImage;
+            urlToImg = checkImg(urlToImg);
+            
+            $('.newsImg0').attr('src', urlToImg);
             $('.newsText0').html(data.articles[0].title);
+            $('.newsSource0').html(data.articles[0].source.name);
+        
+            $('.button0').on('click', function (event) {
+                var linkToNews0 = data.articles[0].url;
+                window.location.href = linkToNews0;
+                
+            })
 
         })
         $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
-            
-            $('.newsImg1').attr('src',data.articles[1].urlToImage);
+
+            var urlToImg = data.articles[1].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg1').attr('src', urlToImg);
             $('.newsText1').html(data.articles[1].title);
-            
+             
+            $('.button1').on('click', function (event) {
+                var linkToNews0 = data.articles[1].url;
+                window.location.href = linkToNews0;
+            })
+
         })
         $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
 
-            $('.newsImg2').attr('src',data.articles[2].urlToImage);
+            var urlToImg = data.articles[2].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg2').attr('src', urlToImg);
             $('.newsText2').html(data.articles[2].title);
-
-        })
-        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
             
-            $('.newsImg3').attr('src',data.articles[3].urlToImage);
+            $('.button2').on('click', function (event) {
+                var linkToNews0 = data.articles[2].url;
+                window.location.href = linkToNews0;
+            })
+
+        })
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            var urlToImg = data.articles[3].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg3').attr('src', urlToImg);
             $('.newsText3').html(data.articles[3].title);
+            
+            $('.button3').on('click', function (event) {
+                var linkToNews0 = data.articles[3].url;
+                window.location.href = linkToNews0;
+            })
 
         })
         $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
 
-            $('.newsImg4').attr('src',data.articles[4].urlToImage);
+            var urlToImg = data.articles[4].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg4').attr('src', urlToImg);
             $('.newsText4').html(data.articles[4].title);
+            
+            $('.button4').on('click', function (event) {
+                var linkToNews0 = data.articles[4].url;
+                window.location.href = linkToNews0;
+            })
+
 
         })
         $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
 
-            $('.newsImg5').attr('src',data.articles[5].urlToImage);
+
+            var urlToImg = data.articles[5].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg5').attr('src', urlToImg);
             $('.newsText5').html(data.articles[5].title);
+            
+            $('.button5').on('click', function (event) {
+                var linkToNews0 = data.articles[5].url;
+                window.location.href = linkToNews0;
+            })
 
         })
+
+        
 
     }
 
