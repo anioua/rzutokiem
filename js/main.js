@@ -320,34 +320,69 @@ $(document).ready(function () {
     }
 
     function news() {
-        
-        
+        var articleFlag = 0;
+         var articleNo = 6;
+
+        $('.nextNews').click(function () {
+           console.log("flaga"+articleFlag);   
+
+            for (var i = 0; i < 6; i++) {
+                var newsPositionNumber = 0;
+
+                $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+                    console.log(articleNo);
+                    var urlToImg = data.articles[articleNo].urlToImage;
+                    urlToImg = checkImg(urlToImg);
+
+                    $('.newsImg' + newsPositionNumber).attr('src', urlToImg);
+                    $('.newsText' + newsPositionNumber).html(data.articles[articleNo].title);
+                    $('.newsSource0' + newsPositionNumber).html(data.articles[articleNo].source.name);
+
+                    $('.button' + newsPositionNumber).on('click', function (event) {
+                        var linkToNews0 = data.articles[articleNo].url;
+                        window.location.href = linkToNews0;
+
+                    })
+                    newsPositionNumber++;
+                    articleNo++;
+                    
+                    if (articleNo == 19) {
+                        articleNo = 0;
+                    }
+
+                })
+
+            }           
+
+        })
+                
+
         function checkImg(imgToCheck) {
 
             if (imgToCheck == null) {
                 imgToCheck = "../rzutokiem/img/noimg.jpg"
                 return imgToCheck;
-            }else{
+            } else {
                 return imgToCheck;
             }
 
         }
-        
-        
+
+
         $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
 
             console.log(data);
             var urlToImg = data.articles[0].urlToImage;
             urlToImg = checkImg(urlToImg);
-            
+
             $('.newsImg0').attr('src', urlToImg);
             $('.newsText0').html(data.articles[0].title);
             $('.newsSource0').html(data.articles[0].source.name);
-        
+
             $('.button0').on('click', function (event) {
                 var linkToNews0 = data.articles[0].url;
                 window.location.href = linkToNews0;
-                
+
             })
 
         })
@@ -358,7 +393,7 @@ $(document).ready(function () {
 
             $('.newsImg1').attr('src', urlToImg);
             $('.newsText1').html(data.articles[1].title);
-             
+
             $('.button1').on('click', function (event) {
                 var linkToNews0 = data.articles[1].url;
                 window.location.href = linkToNews0;
@@ -372,7 +407,7 @@ $(document).ready(function () {
 
             $('.newsImg2').attr('src', urlToImg);
             $('.newsText2').html(data.articles[2].title);
-            
+
             $('.button2').on('click', function (event) {
                 var linkToNews0 = data.articles[2].url;
                 window.location.href = linkToNews0;
@@ -386,7 +421,7 @@ $(document).ready(function () {
 
             $('.newsImg3').attr('src', urlToImg);
             $('.newsText3').html(data.articles[3].title);
-            
+
             $('.button3').on('click', function (event) {
                 var linkToNews0 = data.articles[3].url;
                 window.location.href = linkToNews0;
@@ -400,7 +435,7 @@ $(document).ready(function () {
 
             $('.newsImg4').attr('src', urlToImg);
             $('.newsText4').html(data.articles[4].title);
-            
+
             $('.button4').on('click', function (event) {
                 var linkToNews0 = data.articles[4].url;
                 window.location.href = linkToNews0;
@@ -416,7 +451,7 @@ $(document).ready(function () {
 
             $('.newsImg5').attr('src', urlToImg);
             $('.newsText5').html(data.articles[5].title);
-            
+
             $('.button5').on('click', function (event) {
                 var linkToNews0 = data.articles[5].url;
                 window.location.href = linkToNews0;
@@ -424,7 +459,7 @@ $(document).ready(function () {
 
         })
 
-        
+
 
     }
 
@@ -460,7 +495,7 @@ $(document).ready(function () {
     ajaxCurrency();
     setInterval(ajaxCurrency, 2700000);
     news();
-    setInterval(news, 2700000);
+    //    setInterval(news, 2700000);
 
 
 })
