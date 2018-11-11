@@ -111,19 +111,23 @@
     
     <div id="wiadomosci">
         
-        <div class="info no0"><img class="infoImg newsImg0"><div class="infoText newsText0"></div><input type="button" class="newsButton button0" value="Otwórz" />
+        <div class="info no0"><img class="infoImg newsImg0"><div class="infoText newsText0"></div><input type="button" id="input1" class="newsButton button0" onclick="clickButton(0)" value="Otwórz" />
         </div> 
         
-        <div class="info no1"><img class="infoImg newsImg1"><div class="infoText newsText1"></div><input type="button" class="newsButton button1" value="Otwórz" /></div>
+        <div class="info no1"><img class="infoImg newsImg1"><div class="infoText newsText1"></div><input type="button" class="newsButton button1" onclick="clickButton(1)" value="Otwórz" /></div>
         
-        <div class="info no2"><img class="infoImg newsImg2"><div class="infoText newsText2"></div><input type="button" class="newsButton button2" value="Otwórz" /></div>
+        <div class="info no2"><img class="infoImg newsImg2"><div class="infoText newsText2"></div><input type="button" class="newsButton button2" onclick="clickButton(2)" value="Otwórz" /></div>
         
-        <div class="info no3"><img class="infoImg newsImg3"><div class="infoText newsText3"></div><input type="button" class="newsButton button3" value="Otwórz" /></div>
+        <div class="info no3"><img class="infoImg newsImg3"><div class="infoText newsText3"></div><input type="button" class="newsButton button3" onclick="clickButton(3)" value="Otwórz" /></div>
         
-        <div class="info no4"><img class="infoImg newsImg4"><div class="infoText newsText4"></div><input type="button" class="newsButton button4" value="Otwórz" /></div>
+        <div class="info no4"><img class="infoImg newsImg4"><div class="infoText newsText4"></div><input type="button" class="newsButton button4" onclick="clickButton(4)" value="Otwórz" /></div>
         
-        <div class="info no5"><img class="infoImg newsImg5"><div class="infoText newsText5"></div><input type="button" class="newsButton button5" value="Otwórz" /></div>
-        <div class="info nextNews">Przewiń wiadomości</div>
+        <div class="info no5"><img class="infoImg newsImg5"><div class="infoText newsText5"></div><input type="button" class="newsButton button5" onclick="clickButton(5)" value="Otwórz" /></div>
+        <div id="newsMenu">
+        <div id="newsPage1" class="newsPage" onclick="newsSide1()">Strona 1</div>
+        <div id="newsPage2" class="newsPage" onclick="newsSide2()">Strona 2</div>
+        <div id="newsPage3" class="newsPage" onclick="newsSide3()">Strona 3</div>
+        </div>
 
         
     </div>

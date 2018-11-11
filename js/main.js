@@ -47,6 +47,7 @@ $(document).ready(function () {
 
 
 
+
     function ajaxCurrency() {
 
         $.getJSON('http://api.nbp.pl/api/cenyzlota', function (data) {
@@ -196,10 +197,10 @@ $(document).ready(function () {
             airQualityColor(airQuality, 3);
 
         })
-        $.getJSON('http://api.waqi.info/feed/Poznań/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
+        $.getJSON('http://api.waqi.info/feed/Koszalin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
-            $('#miastoJakosc4').html(locationName.substring(0, 6));
+            $('#miastoJakosc4').html(locationName.substring(0, 8));
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 4);
@@ -320,47 +321,13 @@ $(document).ready(function () {
     }
 
     function news() {
-        var articleFlag = 0;
-         var articleNo = 6;
-
-        $('.nextNews').click(function () {
-           console.log("flaga"+articleFlag);   
-
-            for (var i = 0; i < 6; i++) {
-                var newsPositionNumber = 0;
-
-                $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
-                    console.log(articleNo);
-                    var urlToImg = data.articles[articleNo].urlToImage;
-                    urlToImg = checkImg(urlToImg);
-
-                    $('.newsImg' + newsPositionNumber).attr('src', urlToImg);
-                    $('.newsText' + newsPositionNumber).html(data.articles[articleNo].title);
-                    $('.newsSource0' + newsPositionNumber).html(data.articles[articleNo].source.name);
-
-                    $('.button' + newsPositionNumber).on('click', function (event) {
-                        var linkToNews0 = data.articles[articleNo].url;
-                        window.location.href = linkToNews0;
-
-                    })
-                    newsPositionNumber++;
-                    articleNo++;
-                    
-                    if (articleNo == 19) {
-                        articleNo = 0;
-                    }
-
-                })
-
-            }           
-
-        })
-                
+        articleNo = 0;
 
         function checkImg(imgToCheck) {
 
             if (imgToCheck == null) {
-                imgToCheck = "../rzutokiem/img/noimg.jpg"
+                imgToCheck = "img/noimg.jpg"
+                //                imgToCheck = "../rzutokiem/img/noimg.jpg"
                 return imgToCheck;
             } else {
                 return imgToCheck;
@@ -368,104 +335,21 @@ $(document).ready(function () {
 
         }
 
+        for (let i = 0; i < 6; i++) {
 
-        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+            $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
 
-            console.log(data);
-            var urlToImg = data.articles[0].urlToImage;
-            urlToImg = checkImg(urlToImg);
+                var urlToImg = data.articles[articleNo].urlToImage;
+                urlToImg = checkImg(urlToImg);
 
-            $('.newsImg0').attr('src', urlToImg);
-            $('.newsText0').html(data.articles[0].title);
-            $('.newsSource0').html(data.articles[0].source.name);
+                $('.newsImg' + i).attr('src', urlToImg);
+                $('.newsText' + i).html(data.articles[articleNo].title);
+                $('.newsSource' + i).html(data.articles[articleNo].source.name);
 
-            $('.button0').on('click', function (event) {
-                var linkToNews0 = data.articles[0].url;
-                window.location.href = linkToNews0;
-
+                articleNo++;
             })
-
-        })
-        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
-
-            var urlToImg = data.articles[1].urlToImage;
-            urlToImg = checkImg(urlToImg);
-
-            $('.newsImg1').attr('src', urlToImg);
-            $('.newsText1').html(data.articles[1].title);
-
-            $('.button1').on('click', function (event) {
-                var linkToNews0 = data.articles[1].url;
-                window.location.href = linkToNews0;
-            })
-
-        })
-        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
-
-            var urlToImg = data.articles[2].urlToImage;
-            urlToImg = checkImg(urlToImg);
-
-            $('.newsImg2').attr('src', urlToImg);
-            $('.newsText2').html(data.articles[2].title);
-
-            $('.button2').on('click', function (event) {
-                var linkToNews0 = data.articles[2].url;
-                window.location.href = linkToNews0;
-            })
-
-        })
-        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
-
-            var urlToImg = data.articles[3].urlToImage;
-            urlToImg = checkImg(urlToImg);
-
-            $('.newsImg3').attr('src', urlToImg);
-            $('.newsText3').html(data.articles[3].title);
-
-            $('.button3').on('click', function (event) {
-                var linkToNews0 = data.articles[3].url;
-                window.location.href = linkToNews0;
-            })
-
-        })
-        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
-
-            var urlToImg = data.articles[4].urlToImage;
-            urlToImg = checkImg(urlToImg);
-
-            $('.newsImg4').attr('src', urlToImg);
-            $('.newsText4').html(data.articles[4].title);
-
-            $('.button4').on('click', function (event) {
-                var linkToNews0 = data.articles[4].url;
-                window.location.href = linkToNews0;
-            })
-
-
-        })
-        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
-
-
-            var urlToImg = data.articles[5].urlToImage;
-            urlToImg = checkImg(urlToImg);
-
-            $('.newsImg5').attr('src', urlToImg);
-            $('.newsText5').html(data.articles[5].title);
-
-            $('.button5').on('click', function (event) {
-                var linkToNews0 = data.articles[5].url;
-                window.location.href = linkToNews0;
-            })
-
-        })
-
-
-
+        }
     }
-
-
-    //        8762cdced47449a9b03528bdbb6d371c newsapi
-
 
 
 
@@ -495,7 +379,140 @@ $(document).ready(function () {
     ajaxCurrency();
     setInterval(ajaxCurrency, 2700000);
     news();
-    //    setInterval(news, 2700000);
-
 
 })
+
+
+
+
+var checkFlag = 0;
+
+function newsSide1() {
+
+
+    let articleNo1 = 0;
+
+    function checkImg(imgToCheck) {
+
+        if (imgToCheck == null) {
+            imgToCheck = "img/noimg.jpg"
+            //                imgToCheck = "../rzutokiem/img/noimg.jpg"
+            return imgToCheck;
+        } else {
+            return imgToCheck;
+        }
+
+    }
+
+    for (let i = 0; i < 6; i++) {
+
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            var urlToImg = data.articles[articleNo1].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg' + i).attr('src', urlToImg);
+            $('.newsText' + i).html(data.articles[articleNo1].title);
+            $('.newsSource0' + i).html(data.articles[articleNo1].source.name);
+
+            articleNo1++;
+        })
+
+    }
+    checkFlag = 0;
+}
+
+function newsSide2() {
+
+
+    let articleNo2 = 6;
+
+    function checkImg(imgToCheck) {
+
+        if (imgToCheck == null) {
+            imgToCheck = "img/noimg.jpg"
+            //                imgToCheck = "../rzutokiem/img/noimg.jpg"
+            return imgToCheck;
+        } else {
+            return imgToCheck;
+        }
+
+    }
+
+    for (let i = 0; i < 6; i++) {
+
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            var urlToImg = data.articles[articleNo2].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg' + i).attr('src', urlToImg);
+            $('.newsText' + i).html(data.articles[articleNo2].title);
+            $('.newsSource0' + i).html(data.articles[articleNo2].source.name);
+
+            articleNo2++;
+        })
+
+    }
+    checkFlag = 1;
+}
+
+function newsSide3() {
+
+
+    let articleNo3 = 12;
+
+    function checkImg(imgToCheck) {
+
+        if (imgToCheck == null) {
+            imgToCheck = "img/noimg.jpg"
+            //                imgToCheck = "../rzutokiem/img/noimg.jpg"
+            return imgToCheck;
+        } else {
+            return imgToCheck;
+        }
+
+    }
+
+    for (let i = 0; i < 6; i++) {
+
+        $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+            var urlToImg = data.articles[articleNo3].urlToImage;
+            urlToImg = checkImg(urlToImg);
+
+            $('.newsImg' + i).attr('src', urlToImg);
+            $('.newsText' + i).html(data.articles[articleNo3].title);
+            $('.newsSource0' + i).html(data.articles[articleNo3].source.name);
+
+            articleNo3++;
+        })
+
+    }
+    checkFlag = 2;
+}
+
+
+function clickButton(clickNumber) {
+
+    $.getJSON('https://newsapi.org/v2/top-headlines?country=pl&apiKey=8762cdced47449a9b03528bdbb6d371c', function (data) {
+
+        if (checkFlag == 0) {
+            let newsArticle = data.articles[clickNumber].url;
+            window.window.open(newsArticle);
+        }
+
+        if (checkFlag == 1) {
+            let newsArticle = data.articles[clickNumber + 6].url;
+            window.window.open(newsArticle);
+        }
+
+        if (checkFlag == 2) {
+            let newsArticle = data.articles[clickNumber + 12].url;
+            window.window.open(newsArticle);
+        }
+
+
+    })
+
+}
