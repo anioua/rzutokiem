@@ -350,6 +350,11 @@ $(document).ready(function () {
             })
         }
     }
+    
+    
+    $('#gry').click(function(){
+        window.window.open('http://dust.stronazen.pl/gry-do-busa')
+    })
 
 
 
