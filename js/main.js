@@ -30,7 +30,11 @@ function ajaxWeather(town) {
         temperature = temperature.toFixed(0);
         $('#temperatura').html(temperature);
 
-        $('#cisnienie').html(data.main.pressure);
+        
+        var pressure = data.main.pressure;
+        pressure = pressure.toFixed(0);        
+        $('#cisnienie').html(pressure);
+        
         $('#wilgotnosc').html(data.main.humidity);
         $('#wiatr').html(data.wind.speed);
         $('#opis').html(data.weather[0].description);
@@ -39,8 +43,25 @@ function ajaxWeather(town) {
         $('#cloudIcon img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
 
     })
-
-
+    
+    $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + town + '&APPID=3c8664b6dcbd1f5c9db7d62c98ea4508&units=metric&lang=pl ', function (data) {
+        console.log(data);
+        
+         var temperature = data.list[1].main.temp;
+        temperature = temperature.toFixed(0);
+        $('#temperaturaPozniej').html(temperature);
+        
+        var pressure = data.list[1].main.pressure;
+        pressure = pressure.toFixed(0);        
+        $('#cisnieniePozniej').html(pressure);
+        
+        $('#wilgotnoscPozniej').html(data.list[1].main.humidity);
+        $('#wiatrPozniej').html(data.list[1].wind.speed);
+        $('#opisPozniej').html(data.list[1].weather[0].description);
+        var cloudIcon = data.list[1].weather[0].icon;
+        $('#cloudIconPozniej img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
+    
+})
 }
 
 $(document).ready(function () {

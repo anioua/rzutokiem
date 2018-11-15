@@ -16,21 +16,55 @@
     <div id="mainArea">
 
         <header>Rzut Okiem - w trakcie budowy</header>
-        
-        <div id="imieniny"><script type="text/javascript" src="https://imienniczek.pl/widget/js"></script></div>
+
+        <div id="imieniny">
+            <script type="text/javascript" src="https://imienniczek.pl/widget/js"></script>
+        </div>
 
 
         <div id="pogoda">
 
-            <form method=get>
+            <form id="formularzPogodyMiasta" method=get>
                 <input type="text" id="szukajmiasto" placeholder="Wpisz miasto">
-                <input type="button" value="Sprawdź pogodę" onclick="showValue('szukajmiasto');">
+                <input type="button" id="szukajmiastoPrzycisk" value="Sprawdź pogodę" onclick="showValue('szukajmiasto');">
             </form>
 
 
 
-            Lokacja: <span id="miasto"></span><br> Temperatura: <span id="temperatura"></span><sup>o</sup>C<br> Ciśnienie: <span id="cisnienie"></span><br> Wilgotność: <span id="wilgotnosc"></span>% <br>Wiatr: <span id="wiatr"></span> m/s<br> Opis: <span id="opis"></span><br>
-            <span id="cloudIcon"> <img src="#"></span><br>
+            <div id="nazwaLokacji">Lokacja: <span id="miasto"></span></div>
+            <div id="pogodaRamkaOgolna">
+
+                <ul >
+                    <li id="emptyRow"></li>
+                    <li>Temperatura:</li>
+                    <li>Ciśnienie:</li>
+                    <li>Wilgotność:</li>
+                    <li>Wiatr:</li>
+                    <li>Opis:</li>
+                </ul>
+
+
+                <ul>
+                    <li>obecnie</li>
+                    <li><span id="temperatura"></span><sup>o</sup>C</li>
+                    <li><span id="cisnienie"></span>hPa</li>
+                    <li><span id="wilgotnosc"></span>%</li>
+                    <li><span id="wiatr"></span>m/s</li>
+                    <li><span id="opis"></span></li>
+                    <li><span id="cloudIcon"> <img src="#"></span></li>
+                </ul>
+
+                <ul>
+                    <li>za 5 godzin</li>
+                    <li><span id="temperaturaPozniej"></span><sup>o</sup>C</li>
+                    <li><span id="cisnieniePozniej"></span>hPa</li>
+                    <li><span id="wilgotnoscPozniej"></span>%</li>
+                    <li><span id="wiatrPozniej"></span>m/s</li>
+                    <li><span id="opisPozniej"></span></li>
+                    <li><span id="cloudIconPozniej"> <img src="#"></span></li>
+                </ul>
+
+            </div>
         </div>
 
         <div id="jakoscPowietrza">
@@ -108,36 +142,42 @@
             <footer>*źródło NBP</footer>
         </div>
 
-    
-    <div id="wiadomosci">
-        
-        <div class="info no0"><img class="infoImg newsImg0"><div class="infoText newsText0"></div><input type="button" class="newsButton" onclick="clickButton(0)" value="Czytaj" />
-        </div> 
-        
-        <div class="info no1"><img class="infoImg newsImg1"><div class="infoText newsText1"></div><input type="button" class="newsButton" onclick="clickButton(1)" value="Czytaj" /></div>
-        
-        <div class="info no2"><img class="infoImg newsImg2"><div class="infoText newsText2"></div><input type="button" class="newsButton" onclick="clickButton(2)" value="Czytaj" /></div>
-        
-        <div class="info no3"><img class="infoImg newsImg3"><div class="infoText newsText3"></div><input type="button" class="newsButton" onclick="clickButton(3)" value="Czytaj" /></div>
-        
-        <div class="info no4"><img class="infoImg newsImg4"><div class="infoText newsText4"></div><input type="button" class="newsButton" onclick="clickButton(4)" value="Czytaj" /></div>
-        
-        <div class="info no5"><img class="infoImg newsImg5"><div class="infoText newsText5"></div><input type="button" class="newsButton" onclick="clickButton(5)" value="Czytaj" /></div>
-        <div id="newsMenu">
-        <div id="newsPage1" class="newsPage" onclick="newsSide1()">Strona 1</div>
-        <div id="newsPage2" class="newsPage" onclick="newsSide2()">Strona 2</div>
-        <div id="newsPage3" class="newsPage" onclick="newsSide3()">Strona 3</div>
+
+        <div id="wiadomosci">
+
+            <div class="info no0"><img class="infoImg newsImg0">
+                <div class="infoText newsText0"></div><input type="button" class="newsButton" onclick="clickButton(0)" value="Czytaj" />
+            </div>
+
+            <div class="info no1"><img class="infoImg newsImg1">
+                <div class="infoText newsText1"></div><input type="button" class="newsButton" onclick="clickButton(1)" value="Czytaj" /></div>
+
+            <div class="info no2"><img class="infoImg newsImg2">
+                <div class="infoText newsText2"></div><input type="button" class="newsButton" onclick="clickButton(2)" value="Czytaj" /></div>
+
+            <div class="info no3"><img class="infoImg newsImg3">
+                <div class="infoText newsText3"></div><input type="button" class="newsButton" onclick="clickButton(3)" value="Czytaj" /></div>
+
+            <div class="info no4"><img class="infoImg newsImg4">
+                <div class="infoText newsText4"></div><input type="button" class="newsButton" onclick="clickButton(4)" value="Czytaj" /></div>
+
+            <div class="info no5"><img class="infoImg newsImg5">
+                <div class="infoText newsText5"></div><input type="button" class="newsButton" onclick="clickButton(5)" value="Czytaj" /></div>
+            <div id="newsMenu">
+                <div id="newsPage1" class="newsPage" onclick="newsSide1()">Strona 1</div>
+                <div id="newsPage2" class="newsPage" onclick="newsSide2()">Strona 2</div>
+                <div id="newsPage3" class="newsPage" onclick="newsSide3()">Strona 3</div>
+            </div>
+
+
         </div>
 
-        
-    </div>
-    
 
-    <div id="gry">Gry do autobusu</div>
+        <div id="gry">Gry do autobusu</div>
 
-    
-    
-    <footer></footer>
+
+
+        <footer></footer>
 
     </div>
 
