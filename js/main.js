@@ -18,11 +18,14 @@ function showValue(id) {
 
 }
 
+
+
+
 function ajaxWeather(town) {
+
     town = town;
 
     $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + town + '&APPID=3c8664b6dcbd1f5c9db7d62c98ea4508&units=metric&lang=pl ', function (data) {
-
 
         $('#miasto').html(data.name);
 
@@ -41,6 +44,7 @@ function ajaxWeather(town) {
 
         var cloudIcon = data.weather[0].icon;
         $('#cloudIcon img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
+        
 
     })
     
@@ -62,7 +66,11 @@ function ajaxWeather(town) {
         $('#cloudIconPozniej img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
     
 })
+
+   
+
 }
+
 
 $(document).ready(function () {
 
@@ -181,9 +189,30 @@ $(document).ready(function () {
 
 
         $.getJSON('http://api.waqi.info/feed/Gdynia/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-
+            
+            console.log(data);
+            
             var locationName = data.data.city.name;
             $('#miastoJakosc0').html(locationName.substring(0, 6));
+            
+            var no2 = data.data.iaqi.no2.v;
+            var pm10 = data.data.iaqi.pm10;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            if (no2 == undefined) {
+                no2 = "brak danych";
+            }
+            if (pm10 == undefined) {
+                pm10 = "brak danych";
+            }
+            if (pm25 == undefined) {
+                pm25 = "brak danych";
+            }
+            
+            
+            $('#0no2').html("NO2: " + no2 + "<br>");
+            $('#0pm10').html("PM10: " + pm10 + "<br>");
+            $('#0pm25').html("PM25: " + pm25 + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 0);
@@ -191,9 +220,12 @@ $(document).ready(function () {
         })
 
         $.getJSON('http://api.waqi.info/feed/Kraków/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-
+console.log(data);
             var locationName = data.data.city.name;
             $('#miastoJakosc1').html(locationName.substring(0, 6));
+            $('#1no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#1pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#1pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 1);
@@ -204,15 +236,38 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc2').html(locationName.substring(14, 23));
+            $('#2no2').html("NO2: " + data.data.iaqi.no2.v + "<br>");
+            $('#2pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#2pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 2);
 
         })
         $.getJSON('http://api.waqi.info/feed/Wrocław/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-
+           
             var locationName = data.data.city.name;
             $('#miastoJakosc3').html(locationName.substring(0, 7));
+            
+            
+            var no2 = data.data.iaqi.no2.v;
+            var pm10 = data.data.iaqi.pm10;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            if (no2 == undefined) {
+                no2 = "brak danych";
+            }
+            if (pm10 == undefined) {
+                pm10 = "brak danych";
+            }
+            if (pm25 == undefined) {
+                pm25 = "brak danych";
+            }
+            
+            
+            $('#3no2').html("NO2: " + no2 + "<br>");
+            $('#3pm10').html("PM10: " + pm10 + "<br>");
+            $('#3pm25').html("PM25: " + pm25 + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 3);
@@ -222,6 +277,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc4').html(locationName.substring(0, 8));
+            $('#4no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#4pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#4pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 4);
@@ -231,6 +289,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc5').html(locationName.substring(0, 8));
+            $('#5no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#5pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#5pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 5);
@@ -240,6 +301,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc6').html(locationName.substring(0, 9));
+            $('#6no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#6pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#6pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 6);
@@ -249,6 +313,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc7').html(locationName.substring(0, 6));
+            $('#7no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#7pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#7pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 7);
@@ -258,6 +325,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc8').html(locationName.substring(0, 7));
+            $('#8no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#8pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#8pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 8);
@@ -267,6 +337,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc9').html(locationName.substring(0, 8));
+            $('#9no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#9pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#9pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 9);
@@ -276,6 +349,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc10').html(locationName.substring(0, 8));
+            $('#10no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#10pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#10pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 10);
@@ -285,6 +361,9 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc11').html(locationName.substring(0, 4));
+            $('#11no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
+            $('#11pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
+            $('#11pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 11);
@@ -376,6 +455,17 @@ $(document).ready(function () {
     $('#gry').click(function(){
         window.window.open('http://dust.stronazen.pl/gry-do-busa')
     })
+    
+    
+    
+    function kolejneApi() {
+       
+            $.getJSON('https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76&key=AIzaSyBxIDWP3q2LgcyOVlOUp0Sv-M7otMLWgk4&signature=YOUR_SIGNATURE', function (data) {
+
+                console.log(data);
+            })
+        }
+    
 
 
 
@@ -405,7 +495,12 @@ $(document).ready(function () {
     ajaxCurrency();
     setInterval(ajaxCurrency, 2700000);
     news();
-
+    setInterval(news, 2700000);
+    kolejneApi();
+    
+    
+    
+    
 })
 
 
@@ -542,3 +637,8 @@ function clickButton(clickNumber) {
     })
 
 }
+
+
+$( "#jakoscPowietrza a" ).click(function( event ) {
+  event.preventDefault();
+})
