@@ -186,46 +186,69 @@ $(document).ready(function () {
     function ajaxPollution() {
 
         var airQuality = "";
+        function brakdanychCheck (no2, co, pm10, pm25, miasto) {
+            
+            if (no2 == undefined) {
+                no2 = "brak danych";
+            }else {
+                no2 = no2 + " μg/m3";
+            }
+            if (co == undefined) {
+                co = "brak danych";
+            }else {
+                co = co + " μg/m3";
+            }
+            if (pm10 == undefined) {
+                pm10 = "brak danych";
+            }else {
+                pm10 = pm10 + " μg/m3";
+            }
+            if (pm25 == undefined) {
+                pm25 = "brak danych";
+            }else {
+                pm25 = pm25 + " μg/m3";
+            }
+                
+            
+             
+            $('#'+miasto+'no2').html("NO2: " + no2 + "<br>");
+            $('#'+miasto+'co').html("CO: " + co + "<br>");
+            $('#'+miasto+'pm10').html("PM 10: " + pm10 + "<br>");
+            $('#'+miasto+'pm25').html("PM 2,5: " + pm25 + "<br>");
+                
+            }
 
 
         $.getJSON('http://api.waqi.info/feed/Gdynia/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
             
-            console.log(data);
             
             var locationName = data.data.city.name;
             $('#miastoJakosc0').html(locationName.substring(0, 6));
             
             var no2 = data.data.iaqi.no2.v;
-            var pm10 = data.data.iaqi.pm10;
-            var pm25 = data.data.iaqi.pm25.v;
+            var co = data.data.iaqi.co;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25;
             
-            if (no2 == undefined) {
-                no2 = "brak danych";
-            }
-            if (pm10 == undefined) {
-                pm10 = "brak danych";
-            }
-            if (pm25 == undefined) {
-                pm25 = "brak danych";
-            }
+            brakdanychCheck(no2, co, pm10, pm25, 0);
             
             
-            $('#0no2').html("NO2: " + no2 + "<br>");
-            $('#0pm10').html("PM10: " + pm10 + "<br>");
-            $('#0pm25').html("PM25: " + pm25 + "<br>");
-
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 0);
 
         })
 
         $.getJSON('http://api.waqi.info/feed/Kraków/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-console.log(data);
+
             var locationName = data.data.city.name;
             $('#miastoJakosc1').html(locationName.substring(0, 6));
-            $('#1no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#1pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#1pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 1);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 1);
@@ -236,9 +259,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc2').html(locationName.substring(14, 23));
-            $('#2no2').html("NO2: " + data.data.iaqi.no2.v + "<br>");
-            $('#2pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#2pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 2);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 2);
@@ -251,23 +278,11 @@ console.log(data);
             
             
             var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10;
             var pm25 = data.data.iaqi.pm25.v;
             
-            if (no2 == undefined) {
-                no2 = "brak danych";
-            }
-            if (pm10 == undefined) {
-                pm10 = "brak danych";
-            }
-            if (pm25 == undefined) {
-                pm25 = "brak danych";
-            }
-            
-            
-            $('#3no2').html("NO2: " + no2 + "<br>");
-            $('#3pm10').html("PM10: " + pm10 + "<br>");
-            $('#3pm25').html("PM25: " + pm25 + "<br>");
+            brakdanychCheck(no2, co, pm10, pm25, 3);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 3);
@@ -277,9 +292,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc4').html(locationName.substring(0, 8));
-            $('#4no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#4pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#4pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 4);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 4);
@@ -289,9 +308,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc5').html(locationName.substring(0, 8));
-            $('#5no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#5pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#5pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 5);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 5);
@@ -301,9 +324,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc6').html(locationName.substring(0, 9));
-            $('#6no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#6pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#6pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 6);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 6);
@@ -313,9 +340,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc7').html(locationName.substring(0, 6));
-            $('#7no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#7pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#7pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 7);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 7);
@@ -325,9 +356,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc8').html(locationName.substring(0, 7));
-            $('#8no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#8pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#8pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 8);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 8);
@@ -337,9 +372,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc9').html(locationName.substring(0, 8));
-            $('#9no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#9pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#9pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 9);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 9);
@@ -349,10 +388,14 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc10').html(locationName.substring(0, 8));
-            $('#10no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#10pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#10pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
-
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 10);
+            
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 10);
 
@@ -361,9 +404,13 @@ console.log(data);
 
             var locationName = data.data.city.name;
             $('#miastoJakosc11').html(locationName.substring(0, 4));
-            $('#11no2').html("NO2: " + data.data.iaqi.no2.v+ "<br>");
-            $('#11pm10').html("PM10: " + data.data.iaqi.pm10.v + "<br>");
-            $('#11pm25').html("PM25: " + data.data.iaqi.pm25.v + "<br>");
+            
+            var no2 = data.data.iaqi.no2.v;
+            var co = data.data.iaqi.co.v;
+            var pm10 = data.data.iaqi.pm10.v;
+            var pm25 = data.data.iaqi.pm25.v;
+            
+            brakdanychCheck(no2, co, pm10, pm25, 11);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 11);
