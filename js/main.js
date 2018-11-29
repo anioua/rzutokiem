@@ -490,6 +490,7 @@ $(document).ready(function () {
                 urlToImg = checkImg(urlToImg);
 
                 $('.newsImg' + i).attr('src', urlToImg);
+                $('.newsTitle' + i).html('źródło: '+data.articles[articleNo].source.name);
                 $('.newsText' + i).html(data.articles[articleNo].title);
                 $('.newsSource' + i).html(data.articles[articleNo].source.name);
 
@@ -505,14 +506,7 @@ $(document).ready(function () {
     
     
     
-    function kolejneApi() {
        
-            $.getJSON('https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76&key=AIzaSyBxIDWP3q2LgcyOVlOUp0Sv-M7otMLWgk4&signature=YOUR_SIGNATURE', function (data) {
-
-                console.log(data);
-            })
-        }
-    
 
 
 
@@ -543,7 +537,7 @@ $(document).ready(function () {
     setInterval(ajaxCurrency, 2700000);
     news();
     setInterval(news, 2700000);
-    kolejneApi();
+
     
     
     
@@ -580,6 +574,7 @@ function newsSide1() {
             urlToImg = checkImg(urlToImg);
 
             $('.newsImg' + i).attr('src', urlToImg);
+            $('.newsTitle' + i).html('źródło: '+data.articles[articleNo1].source.name);
             $('.newsText' + i).html(data.articles[articleNo1].title);
             $('.newsSource0' + i).html(data.articles[articleNo1].source.name);
 
@@ -615,6 +610,7 @@ function newsSide2() {
             urlToImg = checkImg(urlToImg);
 
             $('.newsImg' + i).attr('src', urlToImg);
+            $('.newsTitle' + i).html('źródło: '+data.articles[articleNo2].source.name);
             $('.newsText' + i).html(data.articles[articleNo2].title);
             $('.newsSource0' + i).html(data.articles[articleNo2].source.name);
 
@@ -650,6 +646,7 @@ function newsSide3() {
             urlToImg = checkImg(urlToImg);
 
             $('.newsImg' + i).attr('src', urlToImg);
+            $('.newsTitle' + i).html('źródło: '+data.articles[articleNo3].source.name);
             $('.newsText' + i).html(data.articles[articleNo3].title);
             $('.newsSource0' + i).html(data.articles[articleNo3].source.name);
 

@@ -324,6 +324,7 @@ header {
     padding: 6px;
     position: relative;
     /*    flex-wrap: wrap;*/
+
 }
 
 .infoImg {
@@ -338,7 +339,8 @@ header {
 .infoText {
     width: 70%;
     height: 95%;
-    overflow: hidden;
+    overflow: auto;
+    
 }
 
 .info {
@@ -355,6 +357,19 @@ header {
     left: 4%;
     bottom: 5px;
 }
+
+
+.newsTitle {
+    background-color: rgba(0, 0, 0, 0.12);
+    height: 14px;
+    width: 49%;
+    font-size: 0.7em;
+    overflow: auto;
+    position: absolute;
+    bottom: 2px;
+    right: 0;
+}
+
 
 
 #newsMenu {
