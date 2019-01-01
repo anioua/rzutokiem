@@ -235,6 +235,8 @@ $(document).ready(function () {
             
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 0);
+            
+            airQualityCheck(0,no2,co,pm10,pm25);
 
         })
 
@@ -252,6 +254,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 1);
+            
+            airQualityCheck(1,no2,co,pm10,pm25);
 
         })
 
@@ -269,6 +273,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 2);
+            
+            airQualityCheck(2,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Wrocław/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -286,6 +292,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 3);
+            
+            airQualityCheck(3,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Koszalin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -302,6 +310,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 4);
+            
+            airQualityCheck(4,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Szczecin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -318,6 +328,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 5);
+            
+            airQualityCheck(5,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/białystok/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -334,6 +346,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 6);
+            
+            airQualityCheck(6,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Lublin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -350,6 +364,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 7);
+            
+            airQualityCheck(7,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Rzeszów/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -366,6 +382,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 8);
+            
+            airQualityCheck(8,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Zakopane/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -382,6 +400,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 9);
+            
+            airQualityCheck(9,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Katowice/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -398,6 +418,8 @@ $(document).ready(function () {
             
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 10);
+            
+            airQualityCheck(10,no2,co,pm10,pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Łódź/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
@@ -414,6 +436,8 @@ $(document).ready(function () {
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 11);
+            
+            airQualityCheck(11,no2,co,pm10,pm25);
 
         })
 
@@ -425,7 +449,7 @@ $(document).ready(function () {
 
             }
 
-            if ((color > 15) & (color <= 50)) {
+            if ((color > 15) && (color <= 50)) {
                 $('#jakosPowietrzaKolor' + rowNo + '').css("backgroundColor", "#13b739");
                 $('#daneJakosci' + rowNo).html("Bardzo dobra");
 
@@ -463,8 +487,100 @@ $(document).ready(function () {
 
             }
         }
-
-
+        
+        function airQualityCheck (loc,no2,co,pm10,pm25){
+            if (no2 <= 15) { 
+                $('#'+loc+'no2').css("color", "#116a25") 
+            }
+            if ((no2 > 15) && (no2 <= 50)) { 
+                $('#'+loc+'no2').css("color", "#13b739") 
+            }
+            if ((no2 > 50) && (no2 <= 100)) { 
+                $('#'+loc+'no2').css("color", "#ffca18") 
+            }
+            if ((no2 > 150) && (no2 <= 200)) { 
+                $('#'+loc+'no2').css("color", "#ff5618") 
+            }
+            if ((no2 > 200) && (no2 <= 250)) { 
+                $('#'+loc+'no2').css("color", "#ff0b0b") 
+            }
+            if (no2 > 250) { 
+                $('#'+loc+'no2').css("color", "#6a4ad4") 
+            }
+            if ((no2 == null ) || (no2 == undefined)) { 
+                $('#'+loc+'no2').css("color", "#808080") 
+            }
+  
+            if (co <= 3) { 
+                $('#'+loc+'co').css("color", "#116a25") 
+            }
+            if ((co > 3) && (co <= 7 )) { 
+                $('#'+loc+'co').css("color", "#13b739") 
+            }
+            if ((co > 7) && (co <= 11 )) { 
+                $('#'+loc+'co').css("color", "#ffca18") 
+            }
+            if ((co > 11) && (co <= 15 )) { 
+                $('#'+loc+'co').css("color", "#ff5618") 
+            }
+            if ((co > 15) && (co <= 21 )) { 
+                $('#'+loc+'co').css("color", "#ff0b0b") 
+            }
+            if (co > 21 ) { 
+                $('#'+loc+'co').css("color", "#6a4ad4") 
+            }
+            if ((co == null ) || (co == undefined)) { 
+                $('#'+loc+'co').css("color", "#808080") 
+            }
+            
+            if (pm10 <= 21) { 
+                $('#'+loc+'pm10').css("color", "#116a25") 
+            }
+            if ((pm10 > 21) && (pm10 <= 61 )) { 
+                $('#'+loc+'pm10').css("color", "#13b739") 
+            }
+            if ((pm10 > 61) && (pm10 <= 101 )) { 
+                $('#'+loc+'pm10').css("color", "#ffca18") 
+            }
+            if ((pm10 > 101) && (pm10 <= 141 )) { 
+                $('#'+loc+'pm10').css("color", "#ff5618") 
+            }
+            if ((pm10 > 141) && (pm10 <= 201 )) { 
+                $('#'+loc+'pm10').css("color", "#ff0b0b") 
+            }
+            if (pm10 > 201 ) { 
+                $('#'+loc+'pm10').css("color", "#6a4ad4") 
+            }
+            if ((pm10 == null ) || (pm10 == undefined)) { 
+                $('#'+loc+'pm10').css("color", "#808080") 
+            }
+            
+            if (pm25 <= 15) { 
+                $('#'+loc+'pm25').css("color", "#116a25") 
+            }
+            if ((pm25 > 15) && (pm25 <= 50 )) { 
+                $('#'+loc+'pm25').css("color", "#13b739") 
+            }
+            if ((pm25 > 50) && (pm25 <= 100 )) { 
+                $('#'+loc+'pm25').css("color", "#ffca18") 
+            }
+            if ((pm25 > 100) && (pm25 <= 150 )) { 
+                $('#'+loc+'pm25').css("color", "#ff5618") 
+            }
+            if ((pm25 > 150) && (pm25 <= 200 )) { 
+                $('#'+loc+'pm25').css("color", "#ff0b0b") 
+            }
+            if ((pm25 > 200) && (pm25 <= 299 )) { 
+                $('#'+loc+'pm25').css("color", "#6a4ad4") 
+            }
+            if (pm25 > 300 ) { 
+                $('#'+loc+'pm25').css("color", "#690000") 
+            }
+            if ((pm25 == null ) || (pm25 == undefined)) { 
+                $('#'+loc+'pm25').css("color", "#808080") 
+            }
+        }
+            
     }
 
     function news() {
