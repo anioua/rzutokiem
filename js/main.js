@@ -33,46 +33,155 @@ function ajaxWeather(town) {
         temperature = temperature.toFixed(0);
         $('#temperatura').html(temperature);
 
-        
+
         var pressure = data.main.pressure;
-        pressure = pressure.toFixed(0);        
+        pressure = pressure.toFixed(0);
         $('#cisnienie').html(pressure);
-        
+
         $('#wilgotnosc').html(data.main.humidity);
         $('#wiatr').html(data.wind.speed);
         $('#opis').html(data.weather[0].description);
 
         var cloudIcon = data.weather[0].icon;
         $('#cloudIcon img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
-        
+
 
     })
-    
+
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + town + '&APPID=3c8664b6dcbd1f5c9db7d62c98ea4508&units=metric&lang=pl ', function (data) {
         console.log(data);
-        
-         var temperature = data.list[1].main.temp;
+
+        var temperature = data.list[1].main.temp;
         temperature = temperature.toFixed(0);
         $('#temperaturaPozniej').html(temperature);
-        
+
         var pressure = data.list[1].main.pressure;
-        pressure = pressure.toFixed(0);        
+        pressure = pressure.toFixed(0);
         $('#cisnieniePozniej').html(pressure);
-        
+
         $('#wilgotnoscPozniej').html(data.list[1].main.humidity);
         $('#wiatrPozniej').html(data.list[1].wind.speed);
         $('#opisPozniej').html(data.list[1].weather[0].description);
         var cloudIcon = data.list[1].weather[0].icon;
         $('#cloudIconPozniej img').attr("src", "http://openweathermap.org/img/w/" + cloudIcon + ".png");
-    
-})
 
-   
+    })
+
+
 
 }
 
 
 
+function ajaxWorkingSundays() {
+    $.getJSON('http://worldclockapi.com/api/json/cet/now', function (data) {
+
+
+
+        var dayToday = data.dayOfTheWeek;
+        var currentToday = data.currentDateTime;
+
+        var currentMonth = currentToday.substr(5, 2);
+        var currentDay = currentToday.substr(8, 2);
+
+        currentMonth = 02;
+        dayToday = "Thursday";
+        currentDay = 28;
+
+        if (dayToday === "Sunday") {
+            $('#pracujaceNiedziele').html("Dzisiaj sklepy są zamknięte!");
+        } else {
+            $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą zamknięte!");
+        }
+
+        
+        var dayTodayNumber;
+
+
+        currentDay = eval(currentDay);
+
+        function numberOfDays(MonthNow) {
+            if ((MonthNow == 04) || (MonthNow == 06) || (MonthNow == 09) || (MonthNow == 11)) {
+                return 0;
+            } else if (MonthNow == 02){
+                return 2;
+            } else {
+                return 1;
+            }
+        }
+
+        var checkNumberOfDays = numberOfDays(currentMonth);
+
+
+        if (dayToday === "Monday") {
+            dayTodayNumber = 6;
+        }
+        if (dayToday === "Tuesday") {
+            dayTodayNumber = 5;
+        }
+        if (dayToday === "Wednesday") {
+            dayTodayNumber = 4;
+        }
+        if (dayToday === "Thursday") {
+            dayTodayNumber = 3;
+        }
+        if (dayToday === "Friday") {
+            dayTodayNumber = 2;
+        }
+        if (dayToday === "Saturday") {
+            dayTodayNumber = 1;
+        }
+        if (dayToday === "Sunday") {
+            dayTodayNumber = 0;
+        }
+
+
+        if (checkNumberOfDays == 0) {
+
+
+            if (((dayTodayNumber + currentDay) > 23) && ((dayTodayNumber + currentDay) < 31)) {
+
+                if (dayToday === "Sunday") {
+                    $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+                } else {
+
+                    $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą otwarte!");
+                }
+            }
+        }
+        if (checkNumberOfDays == 1) {
+
+
+            if (((dayTodayNumber + currentDay) > 24) && ((dayTodayNumber + currentDay) < 32)) {
+
+                if (dayToday === "Sunday") {
+                    $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+                } else {
+
+                    $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą otwarte!");
+                }
+            }
+        }
+        if (checkNumberOfDays == 2) {
+
+
+            if (((dayTodayNumber + currentDay) > 21) && ((dayTodayNumber + currentDay) < 29)) {
+
+                if (dayToday === "Sunday") {
+                    $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+                } else {
+
+                    $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą otwarte!");
+                }
+            }
+        }
+
+
+
+    })
+}
+
+ajaxWorkingSundays();
 
 
 $(document).ready(function () {
@@ -189,57 +298,58 @@ $(document).ready(function () {
     function ajaxPollution() {
 
         var airQuality = "";
-        function brakdanychCheck (no2, co, pm10, pm25, miasto) {
-            
+
+        function brakdanychCheck(no2, co, pm10, pm25, miasto) {
+
             if (no2 == undefined) {
                 no2 = "brak danych";
-            }else {
+            } else {
                 no2 = no2 + " μg/m3";
             }
             if (co == undefined) {
                 co = "brak danych";
-            }else {
+            } else {
                 co = co + " μg/m3";
             }
             if (pm10 == undefined) {
                 pm10 = "brak danych";
-            }else {
+            } else {
                 pm10 = pm10 + " μg/m3";
             }
             if (pm25 == undefined) {
                 pm25 = "brak danych";
-            }else {
+            } else {
                 pm25 = pm25 + " μg/m3";
             }
-                
-            
-             
-            $('#'+miasto+'no2').html("NO2: " + no2 + "<br>");
-            $('#'+miasto+'co').html("CO: " + co + "<br>");
-            $('#'+miasto+'pm10').html("PM 10: " + pm10 + "<br>");
-            $('#'+miasto+'pm25').html("PM 2,5: " + pm25 + "<br>");
-                
-            }
+
+
+
+            $('#' + miasto + 'no2').html("NO2: " + no2 + "<br>");
+            $('#' + miasto + 'co').html("CO: " + co + "<br>");
+            $('#' + miasto + 'pm10').html("PM 10: " + pm10 + "<br>");
+            $('#' + miasto + 'pm25').html("PM 2,5: " + pm25 + "<br>");
+
+        }
 
 
         $.getJSON('http://api.waqi.info/feed/Gdynia/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-            
-            
+
+
             var locationName = data.data.city.name;
             $('#miastoJakosc0').html(locationName.substring(0, 6));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 0);
-            
-            
+
+
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 0);
-            
-            airQualityCheck(0,no2,co,pm10,pm25);
+
+            airQualityCheck(0, no2, co, pm10, pm25);
 
         })
 
@@ -247,18 +357,18 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc1').html(locationName.substring(0, 6));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 1);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 1);
-            
-            airQualityCheck(1,no2,co,pm10,pm25);
+
+            airQualityCheck(1, no2, co, pm10, pm25);
 
         })
 
@@ -266,181 +376,181 @@ $(document).ready(function () {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc2').html(locationName.substring(14, 23));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 2);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 2);
-            
-            airQualityCheck(2,no2,co,pm10,pm25);
+
+            airQualityCheck(2, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Wrocław/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
-           
+
             var locationName = data.data.city.name;
             $('#miastoJakosc3').html(locationName.substring(0, 7));
-            
-            
+
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 3);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 3);
-            
-            airQualityCheck(3,no2,co,pm10,pm25);
+
+            airQualityCheck(3, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Koszalin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc4').html(locationName.substring(0, 8));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 4);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 4);
-            
-            airQualityCheck(4,no2,co,pm10,pm25);
+
+            airQualityCheck(4, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Szczecin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc5').html(locationName.substring(0, 8));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 5);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 5);
-            
-            airQualityCheck(5,no2,co,pm10,pm25);
+
+            airQualityCheck(5, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/białystok/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc6').html(locationName.substring(0, 9));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 6);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 6);
-            
-            airQualityCheck(6,no2,co,pm10,pm25);
+
+            airQualityCheck(6, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Lublin/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc7').html(locationName.substring(0, 6));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 7);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 7);
-            
-            airQualityCheck(7,no2,co,pm10,pm25);
+
+            airQualityCheck(7, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Rzeszów/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc8').html(locationName.substring(0, 7));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 8);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 8);
-            
-            airQualityCheck(8,no2,co,pm10,pm25);
+
+            airQualityCheck(8, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Zakopane/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc9').html(locationName.substring(0, 8));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 9);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 9);
-            
-            airQualityCheck(9,no2,co,pm10,pm25);
+
+            airQualityCheck(9, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Katowice/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc10').html(locationName.substring(0, 8));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 10);
-            
+
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 10);
-            
-            airQualityCheck(10,no2,co,pm10,pm25);
+
+            airQualityCheck(10, no2, co, pm10, pm25);
 
         })
         $.getJSON('http://api.waqi.info/feed/Łódź/?token=05af933043bbb0a65856da8ed3808470c0e6bc59', function (data) {
 
             var locationName = data.data.city.name;
             $('#miastoJakosc11').html(locationName.substring(0, 4));
-            
+
             var no2 = data.data.iaqi.no2.v;
             var co = data.data.iaqi.co.v;
             var pm10 = data.data.iaqi.pm10.v;
             var pm25 = data.data.iaqi.pm25.v;
-            
+
             brakdanychCheck(no2, co, pm10, pm25, 11);
 
             airQuality = data.data.aqi;
             airQualityColor(airQuality, 11);
-            
-            airQualityCheck(11,no2,co,pm10,pm25);
+
+            airQualityCheck(11, no2, co, pm10, pm25);
 
         })
 
@@ -490,100 +600,100 @@ $(document).ready(function () {
 
             }
         }
-        
-        function airQualityCheck (loc,no2,co,pm10,pm25){
-            if (no2 <= 15) { 
-                $('#'+loc+'no2').css("color", "#116a25") 
+
+        function airQualityCheck(loc, no2, co, pm10, pm25) {
+            if (no2 <= 15) {
+                $('#' + loc + 'no2').css("color", "#116a25")
             }
-            if ((no2 > 15) && (no2 <= 50)) { 
-                $('#'+loc+'no2').css("color", "#13b739") 
+            if ((no2 > 15) && (no2 <= 50)) {
+                $('#' + loc + 'no2').css("color", "#13b739")
             }
-            if ((no2 > 50) && (no2 <= 100)) { 
-                $('#'+loc+'no2').css("color", "#ffca18") 
+            if ((no2 > 50) && (no2 <= 100)) {
+                $('#' + loc + 'no2').css("color", "#ffca18")
             }
-            if ((no2 > 150) && (no2 <= 200)) { 
-                $('#'+loc+'no2').css("color", "#ff5618") 
+            if ((no2 > 150) && (no2 <= 200)) {
+                $('#' + loc + 'no2').css("color", "#ff5618")
             }
-            if ((no2 > 200) && (no2 <= 250)) { 
-                $('#'+loc+'no2').css("color", "#ff0b0b") 
+            if ((no2 > 200) && (no2 <= 250)) {
+                $('#' + loc + 'no2').css("color", "#ff0b0b")
             }
-            if (no2 > 250) { 
-                $('#'+loc+'no2').css("color", "#6a4ad4") 
+            if (no2 > 250) {
+                $('#' + loc + 'no2').css("color", "#6a4ad4")
             }
-            if ((no2 == null ) || (no2 == undefined)) { 
-                $('#'+loc+'no2').css("color", "#808080") 
+            if ((no2 == null) || (no2 == undefined)) {
+                $('#' + loc + 'no2').css("color", "#808080")
             }
-  
-            if (co <= 3) { 
-                $('#'+loc+'co').css("color", "#116a25") 
+
+            if (co <= 3) {
+                $('#' + loc + 'co').css("color", "#116a25")
             }
-            if ((co > 3) && (co <= 7 )) { 
-                $('#'+loc+'co').css("color", "#13b739") 
+            if ((co > 3) && (co <= 7)) {
+                $('#' + loc + 'co').css("color", "#13b739")
             }
-            if ((co > 7) && (co <= 11 )) { 
-                $('#'+loc+'co').css("color", "#ffca18") 
+            if ((co > 7) && (co <= 11)) {
+                $('#' + loc + 'co').css("color", "#ffca18")
             }
-            if ((co > 11) && (co <= 15 )) { 
-                $('#'+loc+'co').css("color", "#ff5618") 
+            if ((co > 11) && (co <= 15)) {
+                $('#' + loc + 'co').css("color", "#ff5618")
             }
-            if ((co > 15) && (co <= 21 )) { 
-                $('#'+loc+'co').css("color", "#ff0b0b") 
+            if ((co > 15) && (co <= 21)) {
+                $('#' + loc + 'co').css("color", "#ff0b0b")
             }
-            if (co > 21 ) { 
-                $('#'+loc+'co').css("color", "#6a4ad4") 
+            if (co > 21) {
+                $('#' + loc + 'co').css("color", "#6a4ad4")
             }
-            if ((co == null ) || (co == undefined)) { 
-                $('#'+loc+'co').css("color", "#808080") 
+            if ((co == null) || (co == undefined)) {
+                $('#' + loc + 'co').css("color", "#808080")
             }
-            
-            if (pm10 <= 21) { 
-                $('#'+loc+'pm10').css("color", "#116a25") 
+
+            if (pm10 <= 21) {
+                $('#' + loc + 'pm10').css("color", "#116a25")
             }
-            if ((pm10 > 21) && (pm10 <= 61 )) { 
-                $('#'+loc+'pm10').css("color", "#13b739") 
+            if ((pm10 > 21) && (pm10 <= 61)) {
+                $('#' + loc + 'pm10').css("color", "#13b739")
             }
-            if ((pm10 > 61) && (pm10 <= 101 )) { 
-                $('#'+loc+'pm10').css("color", "#ffca18") 
+            if ((pm10 > 61) && (pm10 <= 101)) {
+                $('#' + loc + 'pm10').css("color", "#ffca18")
             }
-            if ((pm10 > 101) && (pm10 <= 141 )) { 
-                $('#'+loc+'pm10').css("color", "#ff5618") 
+            if ((pm10 > 101) && (pm10 <= 141)) {
+                $('#' + loc + 'pm10').css("color", "#ff5618")
             }
-            if ((pm10 > 141) && (pm10 <= 201 )) { 
-                $('#'+loc+'pm10').css("color", "#ff0b0b") 
+            if ((pm10 > 141) && (pm10 <= 201)) {
+                $('#' + loc + 'pm10').css("color", "#ff0b0b")
             }
-            if (pm10 > 201 ) { 
-                $('#'+loc+'pm10').css("color", "#6a4ad4") 
+            if (pm10 > 201) {
+                $('#' + loc + 'pm10').css("color", "#6a4ad4")
             }
-            if ((pm10 == null ) || (pm10 == undefined)) { 
-                $('#'+loc+'pm10').css("color", "#808080") 
+            if ((pm10 == null) || (pm10 == undefined)) {
+                $('#' + loc + 'pm10').css("color", "#808080")
             }
-            
-            if (pm25 <= 15) { 
-                $('#'+loc+'pm25').css("color", "#116a25") 
+
+            if (pm25 <= 15) {
+                $('#' + loc + 'pm25').css("color", "#116a25")
             }
-            if ((pm25 > 15) && (pm25 <= 50 )) { 
-                $('#'+loc+'pm25').css("color", "#13b739") 
+            if ((pm25 > 15) && (pm25 <= 50)) {
+                $('#' + loc + 'pm25').css("color", "#13b739")
             }
-            if ((pm25 > 50) && (pm25 <= 100 )) { 
-                $('#'+loc+'pm25').css("color", "#ffca18") 
+            if ((pm25 > 50) && (pm25 <= 100)) {
+                $('#' + loc + 'pm25').css("color", "#ffca18")
             }
-            if ((pm25 > 100) && (pm25 <= 150 )) { 
-                $('#'+loc+'pm25').css("color", "#ff5618") 
+            if ((pm25 > 100) && (pm25 <= 150)) {
+                $('#' + loc + 'pm25').css("color", "#ff5618")
             }
-            if ((pm25 > 150) && (pm25 <= 200 )) { 
-                $('#'+loc+'pm25').css("color", "#ff0b0b") 
+            if ((pm25 > 150) && (pm25 <= 200)) {
+                $('#' + loc + 'pm25').css("color", "#ff0b0b")
             }
-            if ((pm25 > 200) && (pm25 <= 299 )) { 
-                $('#'+loc+'pm25').css("color", "#6a4ad4") 
+            if ((pm25 > 200) && (pm25 <= 299)) {
+                $('#' + loc + 'pm25').css("color", "#6a4ad4")
             }
-            if (pm25 > 300 ) { 
-                $('#'+loc+'pm25').css("color", "#690000") 
+            if (pm25 > 300) {
+                $('#' + loc + 'pm25').css("color", "#690000")
             }
-            if ((pm25 == null ) || (pm25 == undefined)) { 
-                $('#'+loc+'pm25').css("color", "#808080") 
+            if ((pm25 == null) || (pm25 == undefined)) {
+                $('#' + loc + 'pm25').css("color", "#808080")
             }
         }
-            
+
     }
 
     function news() {
@@ -609,7 +719,7 @@ $(document).ready(function () {
                 urlToImg = checkImg(urlToImg);
 
                 $('.newsImg' + i).attr('src', urlToImg);
-                $('.newsTitle' + i).html('źródło: '+data.articles[articleNo].source.name);
+                $('.newsTitle' + i).html('źródło: ' + data.articles[articleNo].source.name);
                 $('.newsText' + i).html(data.articles[articleNo].title);
                 $('.newsSource' + i).html(data.articles[articleNo].source.name);
 
@@ -617,15 +727,15 @@ $(document).ready(function () {
             })
         }
     }
-    
-    
-    $('#gry').click(function(){
+
+
+    $('#gry').click(function () {
         window.window.open('http://dust.stronazen.pl/gry-do-busa')
     })
-    
-    
-    
-       
+
+
+
+
 
 
 
@@ -657,10 +767,10 @@ $(document).ready(function () {
     news();
     setInterval(news, 2700000);
 
-    
-    
-    
-    
+
+
+
+
 })
 
 
@@ -693,7 +803,7 @@ function newsSide1() {
             urlToImg = checkImg(urlToImg);
 
             $('.newsImg' + i).attr('src', urlToImg);
-            $('.newsTitle' + i).html('źródło: '+data.articles[articleNo1].source.name);
+            $('.newsTitle' + i).html('źródło: ' + data.articles[articleNo1].source.name);
             $('.newsText' + i).html(data.articles[articleNo1].title);
             $('.newsSource0' + i).html(data.articles[articleNo1].source.name);
 
@@ -729,7 +839,7 @@ function newsSide2() {
             urlToImg = checkImg(urlToImg);
 
             $('.newsImg' + i).attr('src', urlToImg);
-            $('.newsTitle' + i).html('źródło: '+data.articles[articleNo2].source.name);
+            $('.newsTitle' + i).html('źródło: ' + data.articles[articleNo2].source.name);
             $('.newsText' + i).html(data.articles[articleNo2].title);
             $('.newsSource0' + i).html(data.articles[articleNo2].source.name);
 
@@ -765,7 +875,7 @@ function newsSide3() {
             urlToImg = checkImg(urlToImg);
 
             $('.newsImg' + i).attr('src', urlToImg);
-            $('.newsTitle' + i).html('źródło: '+data.articles[articleNo3].source.name);
+            $('.newsTitle' + i).html('źródło: ' + data.articles[articleNo3].source.name);
             $('.newsText' + i).html(data.articles[articleNo3].title);
             $('.newsSource0' + i).html(data.articles[articleNo3].source.name);
 
@@ -802,6 +912,6 @@ function clickButton(clickNumber) {
 }
 
 
-$( "#jakoscPowietrza a" ).click(function( event ) {
-  event.preventDefault();
+$("#jakoscPowietrza a").click(function (event) {
+    event.preventDefault();
 })

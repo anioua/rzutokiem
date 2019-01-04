@@ -38,19 +38,35 @@ header {
 
 #imieniny {
     position: absolute;
-    /*    left: 5%;*/
-    background-color: #260101;
-    color: #f5c88e;
+    background-color: #f5c88e;
+    color: #260101;  
     height: 40px;
     width: 97%;
-    margin-top: 40px;
+    margin-top: 45px;
     border: 1px solid #000;
     border-radius: 2px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pracujaceNiedziele {
+    position: absolute;
+    background-color: #f5c88e;
+    color: #260101;
+    height: 40px;
+    width: 97%;
+    margin-top: 88px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 #pogoda {
-    margin-top: 90px;
+    margin-top: 140px;
     height: 275px;
     width: 100%;
     background-color: #d6ccb6;
@@ -338,7 +354,7 @@ header {
 
 .infoText {
     width: 70%;
-    height: 80%;
+    height: 95%;
     overflow: auto;
     
 }
@@ -487,11 +503,17 @@ a.tooltipPollution:hover .tooltext{
         width: 370px;
         margin-top: 70px;
     }
+    
+    #pracujaceNiedziele {
+        height: 25px;
+        width: 30%;
+        margin-top: 80px;
+    }
 
     #jakoscPowietrza {
         height: 300px;
         width: 500px;
-        margin-top: 90px;
+        margin-top: 120px;
     }
 
     #waluty {
@@ -555,7 +577,13 @@ a.tooltipPollution:hover .tooltext{
         width: 30%;
         margin-top: 50px;
     }
-
+    
+    #pracujaceNiedziele {
+        height: 25px;
+        width: 30%;
+        margin-top: 80px;
+    }
+    
     #pogoda {
         height: 275px;
         width: 370px;
@@ -565,7 +593,7 @@ a.tooltipPollution:hover .tooltext{
     #jakoscPowietrza {
         height: 300px;
         width: 500px;
-        margin-top: 90px;
+        margin-top: 120px;
     }
 
     #waluty {
