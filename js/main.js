@@ -75,7 +75,28 @@ function ajaxWeather(town) {
 
 function ajaxWorkingSundays() {
     $.getJSON('http://worldclockapi.com/api/json/cet/now', function (data) {
+        
+        
+        function dzisZamkniete() {
+            $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+            $('#pracujaceNiedziele').css("backgroundColor", "green");
+        }
+        
+        function bedzieZamkniete() {
+            $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą zamknięte!");
+            $('#pracujaceNiedziele').css("backgroundColor", "red");
+        }
+        
 
+        function dzisOtwarte() {
+            $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+            $('#pracujaceNiedziele').css("backgroundColor", "green");
+        }
+
+        function bedzieOtwarte() {
+            $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą otwarte!");
+            $('#pracujaceNiedziele').css("backgroundColor", "green");
+        }
 
 
         var dayToday = data.dayOfTheWeek;
@@ -83,18 +104,14 @@ function ajaxWorkingSundays() {
 
         var currentMonth = currentToday.substr(5, 2);
         var currentDay = currentToday.substr(8, 2);
-
-        currentMonth = 02;
-        dayToday = "Thursday";
-        currentDay = 28;
+        
 
         if (dayToday === "Sunday") {
-            $('#pracujaceNiedziele').html("Dzisiaj sklepy są zamknięte!");
+            dzisZamkniete();
         } else {
-            $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą zamknięte!");
+            bedzieZamkniete();
         }
 
-        
         var dayTodayNumber;
 
 
@@ -103,7 +120,7 @@ function ajaxWorkingSundays() {
         function numberOfDays(MonthNow) {
             if ((MonthNow == 04) || (MonthNow == 06) || (MonthNow == 09) || (MonthNow == 11)) {
                 return 0;
-            } else if (MonthNow == 02){
+            } else if (MonthNow == 02) {
                 return 2;
             } else {
                 return 1;
@@ -142,10 +159,10 @@ function ajaxWorkingSundays() {
             if (((dayTodayNumber + currentDay) > 23) && ((dayTodayNumber + currentDay) < 31)) {
 
                 if (dayToday === "Sunday") {
-                    $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+                    dzisOtwarte();
                 } else {
 
-                    $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą otwarte!");
+                    bedzieOtwarte();
                 }
             }
         }
@@ -155,10 +172,11 @@ function ajaxWorkingSundays() {
             if (((dayTodayNumber + currentDay) > 24) && ((dayTodayNumber + currentDay) < 32)) {
 
                 if (dayToday === "Sunday") {
-                    $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+                    dzisOtwarte();
+
                 } else {
 
-                    $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą otwarte!");
+                    bedzieOtwarte();
                 }
             }
         }
@@ -168,12 +186,31 @@ function ajaxWorkingSundays() {
             if (((dayTodayNumber + currentDay) > 21) && ((dayTodayNumber + currentDay) < 29)) {
 
                 if (dayToday === "Sunday") {
-                    $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
+                    dzisOtwarte();
                 } else {
 
-                    $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą otwarte!");
+                    bedzieOtwarte();
                 }
             }
+        }
+
+
+        //Kalendarz Świąt na 2019 
+
+        //Wielkanoc (niedziela poprzedzajaca Wielkanoc)
+        if (((currentDay > 7) && (currentDay < 14)) && (currentMonth == 04)) {
+            bedzieOtwarte();
+        }
+        if ((currentDay == 14) && (currentMonth == 04)) {
+            dzisOtwarte();
+        }
+
+        //Boże Narodzenie (dwie niedziele poprzedzajaca Boże Narodzenie)
+        if (((currentDay > 8) && (currentDay < 22)) && (currentMonth == 12)) {
+            bedzieOtwarte();
+        }
+        if (((currentDay == 15) && (currentMonth == 12)) || ((currentDay == 22) && (currentMonth == 12))) {
+            dzisOtwarte();
         }
 
 
