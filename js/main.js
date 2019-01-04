@@ -72,6 +72,9 @@ function ajaxWeather(town) {
 }
 
 
+
+
+
 $(document).ready(function () {
 
 
