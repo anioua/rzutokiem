@@ -78,8 +78,8 @@ function ajaxWorkingSundays() {
         
         
         function dzisZamkniete() {
-            $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
-            $('#pracujaceNiedziele').css("backgroundColor", "green");
+            $('#pracujaceNiedziele').html("Dzisiaj sklepy są zamknięte!");
+            $('#pracujaceNiedziele').css("backgroundColor", "red");
         }
         
         function bedzieZamkniete() {
@@ -160,6 +160,7 @@ function ajaxWorkingSundays() {
 
                 if (dayToday === "Sunday") {
                     dzisOtwarte();
+    
                 } else {
 
                     bedzieOtwarte();
@@ -187,6 +188,7 @@ function ajaxWorkingSundays() {
 
                 if (dayToday === "Sunday") {
                     dzisOtwarte();
+                    
                 } else {
 
                     bedzieOtwarte();

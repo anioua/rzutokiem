@@ -38,8 +38,8 @@ header {
 
 #imieniny {
     position: absolute;
-    background-color: #f5c88e;
-    color: #260101;  
+    background-image: url(../img/currency_back0.png);
+    color: #fff;  
     height: 40px;
     width: 97%;
     margin-top: 45px;
@@ -69,7 +69,8 @@ header {
     margin-top: 140px;
     height: 275px;
     width: 100%;
-    background-color: #d6ccb6;
+    background-image: url(../img/currency_back0.png);
+    background-image: url(../img/news_back0.png);
     font-weight: 50;
     border: 1px solid #000;
     border-radius: 2px;
@@ -81,22 +82,22 @@ header {
     text-align: center;
 }
 
-#pogoda #szukajmiasto {}
-
 #pogoda #szukajmiastoPrzycisk {
-    background-color: #ceb18f;
-    box-shadow: 0px 3px 5px 1px #000;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
     cursor: pointer;
 }
 
 #pogoda #szukajmiastoPrzycisk:hover {
-    background-color: #fce2b9;
+    background-color: #036e9d;
+    border-radius: 5px;
 }
 
 #pogoda #nazwaLokacji {
     text-align: center;
     margin-top: 10px;
-    background-color: #fce2b9;
+    background-color: #fff;
 }
 
 #pogoda #pogodaRamkaOgolna {
@@ -117,21 +118,21 @@ header {
     width: 105px;
     height: 20px;
     text-align: center;
-    box-shadow: 3px 2px 1px 0px #000;
+    border: 1px solid #fff;
 }
 
 #pogoda #pogodaRamkaOgolna ul li:nth-child(2n+2) {
-    background: #9f813e;
-
+    background: #51becc;
 }
 
 #pogoda #pogodaRamkaOgolna ul li:nth-child(2n+1) {
-    background: #ceb18f;
-
+    background: #036e9d;
 }
 
 #pogoda #pogodaRamkaOgolna ul li:first-child {
-    background: #b7ab91;
+    background: #52fff1;
+    background: #000;
+    color: #fff;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
@@ -141,15 +142,14 @@ header {
 }
 
 #pogoda #pogodaRamkaOgolna ul li:nth-child(2n+7) {
-    background-color: #d6ccb6;
+    background-color: #000;
     height: 40px;
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
 }
 
 #pogoda #pogodaRamkaOgolna #emptyRow {
-    background-color: #d6ccb6;
-    box-shadow: none;
+    background-color: #000;
 }
 
 #opis,
@@ -354,7 +354,7 @@ header {
 
 .infoText {
     width: 70%;
-    height: 95%;
+    height: 85%;
     overflow: auto;
     
 }
