@@ -49,7 +49,6 @@ function ajaxWeather(town) {
     })
 
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + town + '&APPID=3c8664b6dcbd1f5c9db7d62c98ea4508&units=metric&lang=pl ', function (data) {
-        console.log(data);
 
         var temperature = data.list[1].main.temp;
         temperature = temperature.toFixed(0);
@@ -75,18 +74,18 @@ function ajaxWeather(town) {
 
 function ajaxWorkingSundays() {
     $.getJSON('http://worldclockapi.com/api/json/cet/now', function (data) {
-        
-        
+
+
         function dzisZamkniete() {
             $('#pracujaceNiedziele').html("Dzisiaj sklepy są zamknięte!");
             $('#pracujaceNiedziele').css("backgroundColor", "red");
         }
-        
+
         function bedzieZamkniete() {
             $('#pracujaceNiedziele').html("W tę niedzielę sklepy będą zamknięte!");
             $('#pracujaceNiedziele').css("backgroundColor", "red");
         }
-        
+
 
         function dzisOtwarte() {
             $('#pracujaceNiedziele').html("Dzisiaj sklepy są otwarte!");
@@ -104,7 +103,7 @@ function ajaxWorkingSundays() {
 
         var currentMonth = currentToday.substr(5, 2);
         var currentDay = currentToday.substr(8, 2);
-        
+
 
         if (dayToday === "Sunday") {
             dzisZamkniete();
@@ -160,7 +159,7 @@ function ajaxWorkingSundays() {
 
                 if (dayToday === "Sunday") {
                     dzisOtwarte();
-    
+
                 } else {
 
                     bedzieOtwarte();
@@ -188,7 +187,7 @@ function ajaxWorkingSundays() {
 
                 if (dayToday === "Sunday") {
                     dzisOtwarte();
-                    
+
                 } else {
 
                     bedzieOtwarte();
@@ -221,6 +220,115 @@ function ajaxWorkingSundays() {
 }
 
 ajaxWorkingSundays();
+
+function ajaxSpecialDays() {
+
+    $.getJSON('http://worldclockapi.com/api/json/cet/now', function (data) {
+
+
+        var currentMonth = eval(data.currentDateTime.substr(5, 2));
+        var currentDay = eval(data.currentDateTime.substr(8, 2));
+        var specialFlag = 0;
+        var specFlag1 = false;
+        var specFlag2 = false;
+
+        const specialDays = [];
+        specialDays[0] = ['Nowy Rok', 01, 01];
+        specialDays[1] = ['Trzech Króli', 06, 01];
+        specialDays[2] = ['Dzień Babci', 21, 01];
+        specialDays[3] = ['Dzień Dziadka', 22, 01];
+        specialDays[4] = ['Walentynki', 14, 02];
+        specialDays[5] = ['Dzień Kobiet', 08, 03];
+        specialDays[6] = ['Prima Aprilis', 01, 04];
+        specialDays[7] = ['Święto Pracy', 01, 05];
+        specialDays[8] = ['Dzień Flagi RP', 02, 05];
+        specialDays[9] = ['Święto Konstytucji 3 Maja', 03, 05];
+        specialDays[10] = ['Dzień Matki', 26, 05];
+        specialDays[11] = ['Dzień Dziecka', 01, 06];
+        specialDays[12] = ['Dzień Ojca', 23, 06];
+        specialDays[13] = ['Wniebowzięcie NMP/Święto WP', 15, 08];
+        specialDays[14] = ['Dzień Chłopaka', 30, 09];
+        specialDays[15] = ['Dzień Nauczyciela', 14, 10];
+        specialDays[16] = ['Haloween', 31, 10];
+        specialDays[17] = ['Wszystkich Świętych', 01, 11];
+        specialDays[18] = ['Zaduszki', 02, 11];
+        specialDays[19] = ['Święto Niepodległości', 11, 11];
+        specialDays[20] = ['Andrzejki', 29, 11];
+        specialDays[21] = ['Barbórka', 04, 12];
+        specialDays[22] = ['Mikołajki', 06, 12];
+        specialDays[23] = ['Wigilia Bożego Narodzenia', 24, 12];
+        specialDays[24] = ['Boże Narodzenie', 25, 12];
+        specialDays[25] = ['Boże NArodzenie', 26, 12];
+        specialDays[26] = ['Sylwester', 31, 12];
+
+    //swięta ruchome na 2019
+        specialDays[27] = ['Tłusty Czwartek', 28, 02];
+        specialDays[28] = ['Środa Popielcowa', 06, 03];
+        specialDays[29] = ['Niedziela Palmowa', 14, 04];
+        specialDays[30] = ['Wielki Piątek', 19, 04];
+        specialDays[31] = ['Wielka Sobota', 20, 04];
+        specialDays[32] = ['Wielkanoc', 21, 04];
+        specialDays[33] = ['Śmigus-dyngus', 22, 04];
+        specialDays[34] = ['Zielone Świątki', 09, 06];
+        specialDays[35] = ['Boże Ciało', 20, 06];
+        
+        
+        
+        
+        for (let i = 0; i < 36; i++) {
+            var specDay = specialDays[i][1];
+            var specMonth = specialDays[i][2];
+
+
+            if (((currentMonth == specMonth) && (currentDay < specDay)) && (specialFlag < 2)) {
+
+                if (specialFlag == 0) {
+                    $('.Spec1').html(specialDays[i][0] + ' ' + specialDays[i][1] + '.' + specialDays[i][2]);
+                    specFlag1 = true;
+                }
+                if (specialFlag == 1) {
+                    $('.Spec2').html(specialDays[i][0] + ' ' + specialDays[i][1] + '.' + specialDays[i][2]);
+                    specFlag2 = true;
+                }
+
+
+                specialFlag++;
+
+            }
+
+        }
+       for (let i = 0; i < 36; i++) {
+                specDay = specialDays[i][1];
+                specMonth = specialDays[i][2];
+        
+
+        if ((currentMonth < specMonth) && (specialFlag < 2) && ((specFlag1 === false) || (specFlag2 === false))) {
+
+            
+
+                if ((specialFlag == 0) && (specFlag1 == false) && (specMonth > currentMonth)) {
+                    $('.Spec1').html(specialDays[i][0] + ' ' + specialDays[i][1] + '.' + specialDays[i][2]);
+                    specFlag1 = true;
+                }
+                if ((specialFlag == 1) && (specFlag2 == false) && (specMonth > currentMonth)){
+                    $('.Spec2').html(specialDays[i][0] + ' ' + specialDays[i][1] + '.' + specialDays[i][2]);
+                    specFlag2 = true;
+                }
+                
+specialFlag++;
+            }
+            
+        }
+
+
+    })
+}
+
+ajaxSpecialDays();
+
+
+
+
 
 
 $(document).ready(function () {
@@ -472,7 +580,7 @@ $(document).ready(function () {
             $('#miastoJakosc5').html(locationName.substring(0, 8));
 
             var no2 = data.data.iaqi.no2.v;
-            var co = data.data.iaqi.co.v;
+            var co = data.data.iaqi.co;
             var pm10 = data.data.iaqi.pm10;
             var pm25 = data.data.iaqi.pm25.v;
 
